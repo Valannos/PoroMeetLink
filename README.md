@@ -1,4 +1,4 @@
-**The Poro-MeetLink Project v0.7.0**
+**The Poro-MeetLink Project v0.7.1**
 
 - Backend : *SpringBoot v2.0.3*
 
@@ -26,3 +26,5 @@ mvn clean package
 cd pml
 ng serve
 ```
+
+3rd year group project for IMIE Rennes (FR) school
