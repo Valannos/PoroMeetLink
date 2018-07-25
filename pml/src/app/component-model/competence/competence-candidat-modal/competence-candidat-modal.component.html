@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">Ajout d'une compétence</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formCompCand">
+
+    <div class="form-group">
+      <label for="combosecteur">Secteur</label>
+      <select id="combosecteur" class="form-control" (change)="onSelectSecteur($event)">
+        <option selected>{{defautSelection}}</option>
+        <option *ngFor="let secteur of secteurs" [value]="secteur.id">
+          {{secteur.libelle}}
+        </option>
+      </select>
+      <small id="libelleHelp" class="form-text text-muted">Selectionnez un secteur</small>
+    </div>
+    <div class="form-group">
+      <label for="combocomp">Compétence</label>
+      <select id="combocomp" class="form-control" formControlName="competence">
+        <option *ngFor="let competence of competences" [ngValue]="competence">
+          {{competence.intitule}}
+        </option>
+      </select>
+      <small id="libelleHelp" class="form-text text-muted">Selectionnez un secteur</small>
+    </div>
+
+    <div class="form-group">
+      <label for="rating"></label>
+      <ngb-rating id="rating" formControlName="niveau">
+        <ng-template let-fill="fill" let-index="index">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+        </ng-template>
+      </ngb-rating>
+      <small id="helpId" class="text-muted">Evaluer votre niveau</small>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="errorOnSubmit" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="formCompCand.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+  <button type="reset" class="btn btn-warning ">Effacer</button>
+</div>

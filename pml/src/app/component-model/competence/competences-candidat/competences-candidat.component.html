@@ -1,0 +1,12 @@
+<app-poro-nav></app-poro-nav>
+<div class="container-fluid">
+  <button type="button" (click)="addCompetence()" class="btn btn-outline-primary"><i class="fas fa-wrench"></i> Ajouter une compétence</button>
+  <div class="d-flex p-2 flex-wrap">
+    <div *ngFor="let competenceCandidat of competencesCandidat">
+      <app-competences-candidat-details (deleteEmitter)="removeCompetence($event)" [competenceCandidat]="competenceCandidat"></app-competences-candidat-details>
+    </div>
+  </div>
+  <div *ngIf="isLoading">
+      <i class="fas fa-sync fa-spin fa-10x"></i>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: Poro-MeetLink
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    generate-ddl: false
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/poromeetlink?useSSL=false&createDatabaseIfNotExist=true
+    username: root
+    password: admin
+
+  messages:
+    basename: messages
+    encoding: UTF-8
+
+  profiles:
+    active: dev
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+  http:
+    encoding:
+      charset: UTF-8
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+    url: jdbc:mysql://localhost:3306/poromeetlink?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+    user: root
+    password: admin
+    check-change-log-location: true
+    drop-first: false
+
+server:
+  port: 8080
+logging:
+  file: poro_meet_link.log
+  level:
+    root: info
+
+
+
+
+
+
+

@@ -1,0 +1,51 @@
+<div class="modal-header">
+  <h4 class="modal-title">Bienvenue !</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeAndDisconnect()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Bonjour, {{user.username}} et bienvenue sur PoroMeetLink!</p>
+  <p>Pour compléter votre inscription, merci de saisir le formulaire ci-dessous. Nous vous rappelons que ces données restent
+    confidentielles et ne seront pas transmises sans votre accord.
+  </p>
+  <!--Formulaire candidat-->
+  <form [formGroup]="formCandidat">
+    <div class="form-group">
+      <label for="nom">Nom</label>
+      <input type="text" class="form-control" id="nom" aria-describedby="libelleHelp" formControlName="nom" />
+      <small id="libelleHelp" class="form-text text-muted">Saisissez votre nom</small>
+    </div>
+    <div class="form-group">
+      <label for="prenom">Prénom</label>
+      <input type="text" class="form-control" id="prenom" aria-describedby="libelleHelp" formControlName="prenom" />
+      <small id="libelleHelp" class="form-text text-muted">Saisissez votre prénom</small>
+    </div>
+    <div class="form-group">
+      <label for="dateNaissance">date de naissance</label>
+      <div class="input-group">
+        <input class="form-control" placeholder="aaaa-mm-jj" name="dateNaissance" ngbDatepicker #d="ngbDatepicker"
+          formControlName="dateNaissance">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+            <img src="../../../../assets/image/ic_date_range_black_18px.svg" />
+          </button>
+        </div>
+      </div>
+      <small id="libelleHelp" class="form-text text-muted">Saisissez votre date de naissance</small>
+    </div>
+    <div class="form-group">
+      <label for="ville">Ville</label>
+      <input type="text" class="form-control" id="ville" aria-describedby="libelleHelp" formControlName="ville" />
+      <small id="libelleHelp" class="form-text text-muted">Saisissez votre ville</small>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formCandidat.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+    <button type="reset" class="btn btn-warning ">Effacer</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="closeAndDisconnect()">Quitter</button>
+</div>

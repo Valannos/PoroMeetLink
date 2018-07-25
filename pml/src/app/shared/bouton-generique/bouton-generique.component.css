@@ -1,0 +1,13 @@
+button span {
+    color:#FFF;
+}
+button {
+    background-color:transparent;
+    border: 1px solid #FFF;
+    border-radius:1.25em;
+    font-size:1em;
+}
+button:hover {
+    border: 2px solid #FFF;
+    font-size:1.25em;
+}

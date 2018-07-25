@@ -1,0 +1,37 @@
+<app-poro-nav></app-poro-nav>
+<div class="container">
+  <div class="row">
+      <div class="col-sm">
+          <h2 class="text-center text-muted">Type de diplôme enregistrés</h2>
+          <div *ngIf="!types" class="alert alert-info text-center" role="alert">
+            Aucun type de diplôme
+           </div>
+          <table  class="table-hover table">
+              <thead *ngIf="types" class="thead-dark">
+                  <tr>
+                      <th scope="col">id</th>
+                      <th scope="col">Intitulé</th>
+                      <th scope="col">Actions</th>
+                  </tr>
+              </thead>
+              <tbody *ngIf="types">
+                  <tr *ngFor="let type of types">
+                      <th class="active">
+                          {{type.id}}
+                      </th>
+                      <td class="active">
+                          {{type.intitule}}
+                      </td>
+                      <td>
+                          <button *ngIf="isAdministrateurSite()" type="button" class="btn btn-warning mx-3" (click)="edit(type)">Editer</button>
+                          <button *ngIf="isAdministrateurSite()" type="button" class="btn btn-danger" (click)="delete(type.id)">Supprimer</button>
+                      </td>
+                  </tr>
+              </tbody>
+              <tfoot *ngIf="isAdministrateurSite()">
+                  <button class="btn btn-outline-primary mb-1" (click)="open()">Ajouter un type</button>
+              </tfoot>
+          </table>
+      </div>
+  </div>
+</div>

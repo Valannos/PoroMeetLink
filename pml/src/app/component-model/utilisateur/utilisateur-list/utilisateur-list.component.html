@@ -1,0 +1,60 @@
+<app-poro-nav></app-poro-nav>
+<div class="container">
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Pseudonyme</th>
+        <th scope="col">Type de compte</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.username}}
+          <span *ngIf="user.dateBloquage" class="badge badge-warning">Suspendu</span>
+        </td>
+        <td>{{user.roles | role}}
+          <span *ngIf="!user.candidatId && userIsCandidat(user)" class="badge badge-info">Profil incomplet</span>
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="">
+            <button [disabled]="user.superAdmin || (!user.candidatId && !user.employeId)" type="button" class="btn btn-primary"
+              (click)="open(contentDetails)">Détails</button>
+            <button [disabled]="user.superAdmin" *ngIf="!user.dateBloquage" type="button" class="btn btn-danger" (click)="onSuspendAccount(user)">Suspendre</button>
+            <button [disabled]="user.superAdmin" *ngIf="user.dateBloquage" type="button" class="btn btn-success" (click)="onSuspendAccount(user)">Débloquer</button>
+            <button [disabled]="user.superAdmin" type="button" class="btn btn-dark" (click)="open(content)">Supprimer</button>
+          </div>
+          <ng-template #contentDetails let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title">Détails</h4>
+              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <app-candidat-details *ngIf="user.candidatId" [utilisateur]="user"></app-candidat-details>
+              <app-employe-detail *ngIf="user.employeId" [utilisateur]="user"></app-employe-detail>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+            </div>
+          </ng-template>
+          <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title">Attention !</h4>
+            </div>
+            <div class="modal-body">
+              <p>L'utilisateur {{user.username}} sera définitement supprimé.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" (click)="onDeletion(user)">Confirmer</button>
+              <button type="button" class="btn btn-light" (click)="c('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">Postuler à une offre</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Attention : une fois votre proposition de candidature envoyée elle ne sera pas modifiable.
+    Si l'auteur de l'annonce la valide, vous pourrez échanger avec lui.
+  </p>
+<form [formGroup]="propForm">
+  <div class="form-group">
+    <label for="nom">Phrase d'accroche</label>
+    <input type="text" class="form-control" id="nom" aria-describedby="libelleHelp" formControlName="accroche" />
+    <small id="libelleHelp" class="form-text text-muted">Saisissez une phrase d'accroche</small>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="propForm.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+  <button type="reset" class="btn btn-warning ">Effacer</button>
+</form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Quitter</button>
+</div>

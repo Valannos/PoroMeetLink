@@ -1,0 +1,29 @@
+<div class="card m-2">
+  <div class="card-body">
+    <h4 class="card-title">{{competenceCandidat.competence.intitule}}
+      <button (click)="delete(competenceCandidat)" type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </h4>
+    <h6 class="card-subtitle mb-2 text-muted">{{competenceCandidat.competence.secteur.libelle}}</h6>
+    <p class="card-text">
+      <ngb-rating [formControl]="control">
+        <ng-template let-fill="fill">
+          <span class="star" [class.filled]="fill === 100">&#9733;</span>
+
+        </ng-template>
+      </ngb-rating>
+      <button (click)="edit(competenceCandidat)" type="button" class="btn btn-light">
+        <span *ngIf="control.disabled">
+          <i class="fas fa-edit"></i>
+        </span>
+        <span *ngIf="control.enabled">
+          <i class="fas fa-check-circle"></i>
+        </span>
+      </button>
+    </p>
+  </div>
+  <div *ngIf="showProgress" class="card-footer">
+    <ngb-progressbar value = "100"></ngb-progressbar>
+  </div>
+</div>

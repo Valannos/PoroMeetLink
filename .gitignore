@@ -1,0 +1,16 @@
+.gradle/
+.idea/
+.settings/
+.project
+.classpath
+target/
+*.iml
+*.log
+*.gz
+.factorypath
+.sts4-cache/
+src/main/resources/public/
+pml/node_modules/**
+pml/node/**
+pml/dist/**
+.vscode/settings.json

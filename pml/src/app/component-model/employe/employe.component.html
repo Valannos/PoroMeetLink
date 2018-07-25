@@ -1,0 +1,43 @@
+<app-poro-nav></app-poro-nav>
+<div class="container" *ngIf="employes">
+  <table class="table table-hover tm-4">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Poste</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let empl of employes">
+        <th scope="row">{{empl.id}}</th>
+        <td>{{empl.nom}}
+        </td>
+        <td>{{empl.libellePoste}}</td>
+        <td>
+          <div class="btn-group" role="group" aria-label="">
+            <button [disabled]="empl.id === currentEmploye.id" type="button" class="btn btn-dark" (click)="open(content)">Supprimer</button>
+          </div>
+          <ng-template #content let-c="close" let-d="dismiss">
+            <div class="modal-header">
+              <h4 class="modal-title">Attention !</h4>
+            </div>
+            <div class="modal-body">
+              <p>L'employé {{empl.nom}} sera définitement supprimé.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-danger" (click)="onDeletion(empl)">Confirmer</button>
+              <button type="button" class="btn btn-light" (click)="c('Close click')">Annuler</button>
+            </div>
+          </ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container">
+    <p *ngIf="!entreprise" class="alert alert-warning text-center" role="alert">
+      Les détails de l'entreprise n'ont pas été renseignés.
+    </p>
+  </div>

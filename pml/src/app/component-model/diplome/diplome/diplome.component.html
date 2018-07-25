@@ -1,0 +1,10 @@
+<app-poro-nav></app-poro-nav>
+<div class="container-fluid">
+  <button type="button" (click)="addDiplome()" class="btn btn-outline-primary">
+    <i class="fas fa-graduation-cap"></i> Ajouter diplôme</button>
+  <div class="d-flex p-2 flex-wrap">
+    <div *ngFor="let diplome of diplomes">
+      <app-diplome-details (deleteEmitter)="remove($event)" [diplome]="diplome"></app-diplome-details>
+    </div>
+  </div>
+</div>

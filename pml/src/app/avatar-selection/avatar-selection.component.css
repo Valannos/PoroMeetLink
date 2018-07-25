@@ -1,0 +1,8 @@
+.nav-second {
+    background-color:#00A6B2;
+    height:20vh;
+    color:#FFF;
+    display:flex;
+    justify-content: space-evenly;
+    padding:5vh;
+}

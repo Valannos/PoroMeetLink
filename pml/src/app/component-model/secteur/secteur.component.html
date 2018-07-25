@@ -1,0 +1,37 @@
+<app-poro-nav></app-poro-nav>
+<div class="container">
+    <div class="row">
+        <div class="col-sm">
+            <h2 class="text-center text-muted">Secteurs enregistrés</h2>
+            <div *ngIf="!secteurs" class="alert alert-info text-center" role="alert">
+              Aucun secteur enregistré
+             </div>
+            <table  class="table-hover table">
+                <thead *ngIf="secteurs" class="thead-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Libellé</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="secteurs">
+                    <tr *ngFor="let secteur of secteurs">
+                        <th class="active">
+                            {{secteur.id}}
+                        </th>
+                        <td class="active">
+                            {{secteur.libelle}}
+                        </td>
+                        <td>
+                            <button *ngIf="isAdministrateurSite()" type="button" class="btn btn-warning mx-3" (click)="onEdit(secteur)">Editer</button>
+                            <button *ngIf="isAdministrateurSite()" type="button" class="btn btn-danger" (click)="deleteSecteur(secteur.id)">Supprimer</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot *ngIf="isAdministrateurSite()">
+                    <button class="btn btn-outline-primary mb-1" (click)="openLg()">Ajouter un secteur</button>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

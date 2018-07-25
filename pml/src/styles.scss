@@ -1,0 +1,45 @@
+* {
+  font-family: 'Titillium Web', sans-serif;
+  /*color: #00A6B2;*/
+}
+
+html {
+  min-width: 100vw;
+  min-height: 100vh;
+
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+}
+
+.fas.orange { color: #FF6800; }
+.fas.md-18 { font-size: 18px; }
+.fas.md-24 { font-size: 24px; }
+.fas.md-36 { font-size: 36px; }
+.fas.md-48 { font-size: 48px; }
+
+
+$theme-colors: (
+  "primary": #00A6B2,
+  "secondary": #00EDFF,
+  "warning": #FF6800,
+  "danger": #B24900,
+);
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+@import "node_modules/bootstrap/scss/grid";
+@import "node_modules/bootstrap/scss/navbar";
+@import "node_modules/bootstrap/scss/utilities";
+@import "node_modules/bootstrap/scss/transitions";
+@import "node_modules/bootstrap/scss/reboot";
+@import "node_modules/bootstrap/scss/type";
+@import "node_modules/bootstrap/scss/buttons";
+@import "node_modules/bootstrap/scss/forms";

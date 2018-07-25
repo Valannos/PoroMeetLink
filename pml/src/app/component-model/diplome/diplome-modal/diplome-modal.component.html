@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{titre}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <!--Formulaire diplôme-->
+  <form [formGroup]="diplomeForm">
+    <!--Intitulé-->
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="intitule">Intitulé</label>
+          <input type="text" class="form-control" id="intitule" aria-describedby="libelleHelp" formControlName="intitule" />
+          <small id="libelleHelp" class="form-text text-muted">Saisissez l'intitulé de votre diplôme</small>
+        </div>
+      </div>
+    </div>
+    <!--anneeObtention-->
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="anneeObtention">Année d'obtention</label>
+          <input type="number" class="form-control" id="anneeObtention" aria-describedby="libelleHelp" formControlName="anneeObtention"
+          />
+          <small id="libelleHelp" class="form-text text-muted">Saisissez l'année d'obtention</small>
+        </div>
+      </div>
+    </div>
+    <!--etablissement-->
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="etablissement">Etablissement</label>
+          <input type="text" class="form-control" id="etablissement" aria-describedby="libelleHelp" formControlName="etablissement"
+          />
+          <small id="libelleHelp" class="form-text text-muted">Saisissez l'établissement</small>
+        </div>
+      </div>
+    </div>
+    <!--typeDiplome-->
+    <div class="form-group" *ngIf="!isEdition">
+      <label for="type_diplome">Type de diplôme</label>
+      <select id="type_diplome" class="form-control" formControlName="typeDiplome">
+        <option *ngFor="let typeDiplome of types" [ngValue]="typeDiplome">
+          {{typeDiplome.intitule}}
+        </option>
+      </select>
+    </div>
+    <!--diplomeEnum-->
+    <div class="form-group">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input mr-2" (ngModelChange)="choose($event)" type="radio" id="obtenu" [value]="statutDiplomeEnum.OBTENU"
+          [(ngModel)]="option" [ngModelOptions]="{standalone: true}">
+        <label class="form-check-label mr-2" for="obtenu">Obtenu</label>
+
+        <input class="form-check-input" (ngModelChange)="choose($event)" type="radio" id="en_cours" [value]="statutDiplomeEnum.EN_COURS"
+          [(ngModel)]="option" [ngModelOptions]="{standalone: true}">
+        <label class="form-check-label" for="en_cours">En cours</label>
+
+        <input class="form-check-input" (ngModelChange)="choose($event)" type="radio" id="non_obtenu" [value]="statutDiplomeEnum.NON_OBTENU"
+          [(ngModel)]="option" [ngModelOptions]="{standalone: true}">
+        <label class="form-check-label" for="non_obtenu">Non obtenu</label>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="diplomeForm.invalid || isLoading" (click)="onSubmitForm()">{{valideButtonLabel}} <i *ngIf="isLoading" class="fas fa-spinner fa-pulse"></i> </button>
+    <button type="reset" class="btn btn-warning ">Effacer</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="errorOnSubmit" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Quitter</button>
+</div>

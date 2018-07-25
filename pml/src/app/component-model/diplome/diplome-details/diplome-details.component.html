@@ -1,0 +1,23 @@
+<div class="card mr-3">
+  <div class="card-body">
+    <h4 class="card-title">{{diplome.intitule}}
+      <button (click)="delete(diplome)" type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </h4>
+    <h6 class="card-subtitle mb-2 text-muted">
+      <i class="fas fa-flask"></i> {{diplome.typeDiplome.intitule}}</h6>
+    <ul class="list-group list-group-flush">
+      <li *ngIf="diplome.anneeObtention" class="list-group-item">
+        <i class="far fa-calendar-check"></i> {{diplome.anneeObtention}}</li>
+      <li *ngIf="diplome.etablissement" class="list-group-item">
+        <i class="fas fa-school"></i> {{diplome.etablissement}}</li>
+      <li *ngIf="diplome.diplomeEnum === diplomeEmun.OBTENU" class="list-group-item"><h3 class="badge badge-success">Obtenu</h3></li>
+      <li *ngIf="diplome.diplomeEnum === diplomeEmun.EN_COURS" class="list-group-item"><h3 class="badge badge-warning">En cours</h3></li>
+      <li *ngIf="diplome.diplomeEnum === diplomeEmun.NON_OBTENU" class="list-group-item"><h3 class="badge badge-danger">Non obtenu</h3></li>
+    </ul>
+    <div class="card-body">
+      <button type="button" (click)="edit()" class="btn btn-primary">Editer</button>
+    </div>
+  </div>
+</div>

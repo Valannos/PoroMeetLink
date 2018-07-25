@@ -1,0 +1,17 @@
+<div class="card">
+  <div *ngIf="isLoading">
+      <i class="fas fa-sync fa-spin fa-10x"></i>
+  </div>
+  <div class="card-header">
+    Profil candidat
+  </div>
+  <div class="card-body">
+        <ul class="card-text list-group list-group-flush">
+            <li class="list-group-item">Nom: {{candidat?.nom}}</li>
+            <li class="list-group-item">Prénom: {{candidat?.prenom}}</li>
+            <li class="list-group-item">Ville: {{candidat?.ville}}</li>
+            <li class="list-group-item">Date de naissance: {{candidat?.dateNaissance | date:'dd/MM/yyyy'}}</li>
+          </ul>
+          <button type="button" class="btn btn-info mt-4" (click)="onEdit()">Modifier</button>
+  </div>
+</div>

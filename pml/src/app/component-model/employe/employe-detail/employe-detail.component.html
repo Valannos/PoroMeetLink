@@ -1,0 +1,13 @@
+<div class="card">
+  <div class="card-header">
+    Profil employé
+  </div>
+  <div class="card-body">
+        <ul class="card-text list-group list-group-flush">
+            <li class="list-group-item">Nom: {{employe?.nom}}</li>
+            <li class="list-group-item">Prénom: {{employe?.prenom}}</li>
+            <li class="list-group-item">Poste occupé: {{employe?.libellePoste}}</li>
+          </ul>
+          <button type="button mt-2" class="btn btn-info" (click)="onEdit()">Modifier</button>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="modal-header">
+  <h4 class="modal-title">Ajout ou modification d'une annonce</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>
+    Une fois votre annonce ajoutée ou modifiée, vous pourrez lui attribuer des compétences requises et la valider pour qu'elle
+    soit diffusée.
+  </p>
+  <!--Formulaire annonce-->
+  <form [formGroup]="formAnnonce">
+    <div class="row">
+      <div class="form-group col">
+        <label for="intitule">Intitulé</label>
+        <input type="text" class="form-control" id="intitule" aria-describedby="intituleHelp" formControlName="intitule" />
+        <small id="intituleHelp" class="form-text text-muted">Saisissez l'intitulé de votre annonce</small>
+      </div>
+      <div class="form-group col">
+        <label for="niveauExperience">Niveau souhaité</label>
+        <input type="text" class="form-control" id="niveauExperience" aria-describedby="niveauExperienceHelp" formControlName="niveauExperience"
+        />
+        <small id="niveauExperienceHelp" class="form-text text-muted">Saisissez un niveau souhaité (ex: débutant, confirmé...)</small>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col">
+        <label for="dateDebut">Date de début</label>
+        <div class="input-group">
+          <input class="form-control" placeholder="aaaa-mm-jj" formControlName="dateDebut" name="dateDebut" ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <i class="far fa-calendar-alt"></i>
+            </button>
+          </div>
+        </div>
+        <small id="dateDebutHelp" class="form-text text-muted">Saisissez la date de début de contrat</small>
+      </div>
+      <div class="form-group col">
+        <label for="dateFin">Date de fin</label>
+        <div class="input-group">
+          <input id="dateFin" class="form-control" placeholder="aaaa-mm-jj" name="dateFin" ngbDatepicker #e="ngbDatepicker" formControlName="dateFin">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" (click)="e.toggle()" type="button">
+                <i class="far fa-calendar-alt"></i>
+            </button>
+          </div>
+        </div>
+        <small id="dateFinHelp" class="form-text text-muted">Saisissez la date de fin de contrat</small>
+      </div>
+    </div>
+      <div class="form-group">
+        <label for="typeContrat">Type contrat</label>
+        <select class="custom-select" id="typeContrat" formControlName="typeContrat" (change)="checkValue($event)">
+          <option *ngFor="let type of typesContrat | enumToArray" [ngValue]="type" [label]="type"></option>
+        </select>
+        <small id="typeContratHelp" class="form-text text-muted">Saisissez le type de contrat</small>
+      </div>
+      <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+          <small id="descriptionHelp" class="form-text text-muted">Saisissez une description</small>
+        </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formAnnonce.invalid" (click)="onSubmitForm()">{{confirmButton}}</button>
+    <button type="reset" class="btn btn-warning ">Effacer</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="close()">Quitter</button>
+</div>

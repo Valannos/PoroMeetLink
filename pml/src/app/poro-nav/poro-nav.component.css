@@ -1,0 +1,19 @@
+* {
+    /* background-color: #00A6B2;*/
+}
+
+.header {
+    height: 15vh;
+}
+
+h1 {
+    color: #FFF;
+}
+.nav {
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    color:#00A6B2;
+}
+.nav-link{
+    color:#00A6B2;
+}

@@ -1,0 +1,21 @@
+<app-poro-nav></app-poro-nav>
+<div class="container">
+  <div class="d-flex flex-row bd-highlight mb-3">
+    <div class="card">
+      <div class="card-header">
+        Profil utilisateur
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Informations compte utilisateur</h5>
+        <p class="card-text">Username: {{user?.username}}</p>
+        <p class="card-text">Mail: {{user?.email}}</p>
+      </div>
+    </div>
+    <div class="ml-3" *ngIf="isCandidat() && candidat">
+      <app-candidat-details *ngIf="candidat" [candidat]="candidat" [utilisateur]="user"></app-candidat-details>
+    </div>
+    <div class="ml-3" *ngIf="isEmploye() && employe">
+      <app-employe-detail [employe]="employe"></app-employe-detail>
+    </div>
+  </div>
+</div>

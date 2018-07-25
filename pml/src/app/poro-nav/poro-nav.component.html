@@ -1,0 +1,66 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
+  <img class="navbar-brand" src="/assets/image/Poro-Meet-Link.png" width="70" height="70">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNavAltMarkup"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav d-flex p-2 flex-row justify-content-between">
+      <li class="nav-item p-2">
+        <a class="nav-link" routerLink="/home">Accueil
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li *ngIf="isCandidat() && utilisateur && !utilisateur.candidatId" class="nav-item p-2">
+        <a class="nav-link" (click)="openModale()">Renseigner profile
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <!--Outils d'administration-->
+      <li *ngIf="isAdministrateurSite()" class="nav-item dropdown p-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Administration
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/utilisateurs">Comptes utilisateurs</a>
+          <a class="dropdown-item" routerLink="/secteur">Secteurs</a>
+          <a class="dropdown-item" routerLink="/competence">Competences</a>
+          <a class="dropdown-item" routerLink="/typediplome">Types de diplôme</a>
+        </div>
+      </li>
+      <!--Outils du candidat-->
+      <li *ngIf="isCandidat() && utilisateur && utilisateur.candidatId" class="nav-item dropdown p-2">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Espace candidat
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/experiences">Mes Experiences</a>
+          <a class="dropdown-item" routerLink="/diplomes">Mes diplômes</a>
+          <a class="dropdown-item" routerLink="/mescompetences">Mes compétences</a>
+        </div>
+      </li>
+      <li *ngIf="isCandidat() && utilisateur && utilisateur.candidatId" class="nav-item dropdown p-2">
+        <a class="nav-link" routerLink="/candidatures">Mes candidatures</a>
+      </li>
+      <li *ngIf="isCandidat() && utilisateur && utilisateur.candidatId" class="nav-item dropdown p-2">
+        <a class="nav-link" routerLink="/annonces">Offres d'emploi</a>
+      </li>
+      <!--Outil du personnel de l'entreprise-->
+      <li *ngIf="isAdministrateurCompteEntreprise() || isGerant()" class="nav-item dropdown p-2">
+        <a class="nav-link" routerLink="/annonces">Mes offres d'emplois</a>
+      </li>
+      <li *ngIf="isAdministrateurCompteEntreprise() || isGerant()" class="nav-item dropdown p-2">
+        <a class="nav-link" routerLink="/employes">Employés</a>
+      </li>
+      <li *ngIf="isAdministrateurCompteEntreprise() || isGerant()" class="nav-item dropdown p-2">
+        <a class="nav-link" routerLink="/entreprise">Profil de l'entreprise</a>
+      </li>
+    </ul>
+    <div>
+      <button type="button" class="btn btn-outline-success mr-2" routerLink="/profile" placement="bottom" ngbTooltip="Profile"><i class="fas fa-user-circle fa-lg"></i></button>
+      <button type="button" class="btn btn-outline-primary mr-2" routerLink="/messages" placement="bottom" ngbTooltip="Messages"><i class="far fa-bell fa-lg"></i></button>
+      <button *ngIf="utilisateur" type="button" class="btn btn-outline-danger" (click)="gettingDeconnected()" placement="bottom" ngbTooltip="Déconnecter {{utilisateur.username}}">
+        <i class="fas fa-sign-out-alt fa-lg"></i></button>
+    </div>
+  </div>
+</nav>

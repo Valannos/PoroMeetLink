@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="flex-container">
+    <div *ngIf="isAlertVisible" class="alert alert-danger" role="alert">
+      Echec de connexion
+    </div>
+    <div *ngIf="!isAlertVisible" class="alert alert-primary" role="alert">
+      Création d'un nouvel utilisateur
+    </div>
+    <div class="border-form col-md-6 col-lg-6 col-xs-6">
+
+      <h1 class="h3 mb-3 font-weight-normal">S'enregistrer</h1>
+      <form [formGroup]="form">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputPseudo">Pseudonyme</label>
+            <input type="text" id="inputPseudo" class="form-control" placeholder="Pseudo" autofocus formControlName="username">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword">Mot de passe</label>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" formControlName="password">
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="inputemail">Courriel</label>
+            <input type="email" id="inputemail" class="form-control" placeholder="courriel" formControlName="email">
+          </div>
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input mr-2" (ngModelChange)="choose($event)" type="radio" id="inlineRadio1" [value]="CAN" [(ngModel)]="option"
+              [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label mr-2" for="inlineRadio1">Vous êtes un candidat</label>
+
+            <input class="form-check-input" (ngModelChange)="choose($event)" type="radio" id="inlineRadio2" [value]="ENT" [(ngModel)]="option"
+              [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label" for="inlineRadio2">Vous représentez une entreprise</label>
+          </div>
+        </div>
+        <div class="form-group" *ngIf="option === ENT">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="isGerant" id="defaultCheck1" [ngModelOptions]="{standalone: true}"
+              id="defaultCheck1">
+            <label class="form-check-label" for="defaultCheck1">
+              Vous êtes gérant
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="isRecruteur" id="defaultCheck2" [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label" for="defaultCheck2">
+              Vous êtes recruteur
+            </label>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success mr-4" [disabled]="form.invalid" (click)="onValide()">Valider</button>
+        <button type="reset" class="btn btn-warning mr-4">Effacer</button>
+        <a class="btn btn-primary" routerLink="/">Connexion</a>
+      </form>
+    </div>
+  </div>
+
+</div>

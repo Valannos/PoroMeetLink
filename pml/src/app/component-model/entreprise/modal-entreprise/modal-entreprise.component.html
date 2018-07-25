@@ -1,0 +1,58 @@
+<div class="modal-header">
+  <h4 class="modal-title">Formulaire de saisie des informations d'entreprise</h4>
+  <button type="button" class="close" aria-label="Close" (click)="closeModale()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Pour poster des annonces et contacter des candidats, des informations sur votre entreprise sont requises. Nous vous rappelons
+    que ces données restent confidentielles et ne seront pas transmises sans votre accord.
+  </p>
+  <!--Formulaire entreprise-->
+  <form [formGroup]="formEntreprise">
+
+    <div class="row">
+
+      <div class="col">
+        <div class="form-group">
+          <label for="intitule">Intitulé</label>
+          <input type="text" class="form-control" id="intitule" aria-describedby="libelleHelp" formControlName="intitule" />
+          <small id="libelleHelp" class="form-text text-muted">Saisissez l'intitulé de votre entreprise</small>
+        </div>
+        <div class="form-group">
+          <label for="adresse">Adresse</label>
+          <input type="text" class="form-control" id="adresse" aria-describedby="libelleHelp" formControlName="adresse" />
+          <small id="libelleHelp" class="form-text text-muted">Saisissez une adresse</small>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <input type="text" class="form-control" id="telephone" aria-describedby="libelleHelp" formControlName="telephone" />
+          <small id="libelleHelp" class="form-text text-muted">Un numéro de téléphone</small>
+        </div>
+        <div class="form-group">
+          <label for="siret">SIRET</label>
+          <input type="text" class="form-control" id="telephone" aria-describedby="libelleHelp" formControlName="siret" />
+          <small id="libelleHelp" class="form-text text-muted">Numéro SIRET</small>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+        <label for="combosecteur">Secteurs</label>
+        <select multiple id="combosecteur" class="form-control" formControlName="secteurs">
+          <option *ngFor="let secteur of secteurs" [value]="secteur">
+            {{secteur.libelle}}
+          </option>
+        </select>
+      </div>
+    <button type="submit" class="btn btn-primary" [disabled]="formEntreprise.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+    <button type="reset" class="btn btn-warning ">Effacer</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="showError" class="alert alert-danger" role="alert">
+    Une erreur s'est produite pendant l'enregistrement
+  </div>
+  <button type="button" class="btn btn-outline-dark" (click)="closeModale()">Quitter</button>
+</div>

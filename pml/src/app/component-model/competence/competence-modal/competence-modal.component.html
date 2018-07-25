@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">Ajout d'une compétence</h4>
+    <button type="button" class="close" aria-label="Close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!--Formulaire compétence-->
+    <form [formGroup]="formCompetence">
+
+      <div class="row">
+
+        <div class="col">
+          <div class="form-group">
+            <label for="intitule">Intitulé</label>
+            <input type="text" class="form-control" id="intitule" aria-describedby="libelleHelp" formControlName="intitule" />
+            <small id="libelleHelp" class="form-text text-muted">Saisissez l'intitulé de la compétence</small>
+          </div>
+        </div>
+      </div>
+      <div class="form-group" *ngIf="!isEdition">
+          <label for="combosecteur">Secteur</label>
+          <select id="combosecteur" class="form-control" formControlName="secteur">
+            <option *ngFor="let secteur of secteurs" [ngValue]="secteur" >
+              {{secteur.libelle}}
+            </option>
+          </select>
+        </div>
+      <button type="submit" class="btn btn-primary" [disabled]="formCompetence.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+      <button type="reset" class="btn btn-warning ">Effacer</button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div *ngIf="errorOnSubmit" class="alert alert-danger" role="alert">
+      Une erreur s'est produite pendant l'enregistrement
+    </div>
+    <button type="button" class="btn btn-outline-dark" (click)="close()">Quitter</button>
+  </div>

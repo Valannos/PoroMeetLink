@@ -1,0 +1,34 @@
+<div class="card" style="width: 20rem;">
+  <img class="card-img-top" src="../../assets/image/Poro-Meet-Link.png" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">Se connecter</h5>
+    <div class="card-text">
+      <div *ngIf="isAlertVisible" class="alert alert-danger" role="alert">
+        Echec de connexion
+      </div>
+      <div *ngIf="!isAlertVisible" class="alert alert-primary" role="alert">
+        Entrez vos identifiants
+      </div>
+    </div>
+    <form class="form-signin text-center">
+      <label for="inputPseudo" class="sr-only">Pseudo</label>
+      <input type="text" id="inputPseudo" class="form-control mb-2" placeholder="Pseudo" required autofocus
+             [(ngModel)]="user.username" name="username">
+      <label for="inputPassword" class="sr-only">Mot de passe</label>
+      <input type="password" id="inputPassword" class="form-control mb-2" placeholder="Mot de passe" required
+             [(ngModel)]="user.password" name="password">
+    </form>
+    <button type="button" class="btn btn-block btn-outline-primary" (click)="onValide()">Connexion</button>
+    <div class="card-footer text-muted">
+      <div class="d-flex p-2 flex-column ">
+        <div>
+          <a routerLink='/registration'>Enregistrement</a>
+        </div>
+        <div>
+          <a href="#">Mot de passe oublié ?</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

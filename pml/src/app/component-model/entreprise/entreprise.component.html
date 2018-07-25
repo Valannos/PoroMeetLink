@@ -1,0 +1,8 @@
+<app-poro-nav></app-poro-nav>
+<div class="container">
+  <div *ngIf="isEntrepriseUndefined()" class="alert alert-warning text-center" role="alert">
+    <p>Les détails de l'entreprise n'ont pas été renseignés.</p>
+    <button class="btn" type="button" (click)="openModal(false)">Renseigner</button>
+  </div>
+  <app-entreprise-details *ngIf="!isEntrepriseUndefined()" [entreprise]="entreprise"></app-entreprise-details>
+</div>

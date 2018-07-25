@@ -1,0 +1,5 @@
+export enum PaysEnum {
+
+  FRANCE, BELGIQUE, SUISSE, PAYS_BAS, ROYAUME_UNI, ALLEMAGNE
+
+}

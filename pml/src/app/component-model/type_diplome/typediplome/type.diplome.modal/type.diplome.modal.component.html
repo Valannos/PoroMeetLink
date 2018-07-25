@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Saisir un type de diplôme</h4>
+  <button type="button" class="close" aria-label="Close" (click)="close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formTypeDiplome">
+    <div class="form-group">
+      <label for="intitule">Intitulé</label>
+      <input type="text" class="form-control" id="intitule" aria-describedby="libelleHelp" formControlName="intitule" />
+      <small id="libelleHelp" class="form-text text-muted">Saisir un intitulé</small>
+    </div>
+    <ng-template *ngIf="formTypeDiplome.invalid" #tipContent>Vérifier les champs</ng-template>
+    <button type="submit" class="btn btn-primary" [disabled]="formTypeDiplome.invalid" (click)="onSubmitForm()">{{valideButtonLabel}}</button>
+    <button type="reset" class="btn btn-warning ">Effacer</button>
+  </form>
+</div>
+<div class="modal-footer">
+  <div *ngIf="errorOnSubmit" class="alert alert-danger " role="alert ">
+    <p>Une erreur s'est produite.</p>
+  </div>
+</div>

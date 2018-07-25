@@ -1,0 +1,17 @@
+<div class="row mt-4">
+  <div class="card">
+    <div class="card-header">
+      Détails de l'entreprise
+    </div>
+    <div class="card-body">
+      <ul class="card-text list-group list-group-flush">
+        <li class="list-group-item">Intitulé: {{entreprise.intitule}}</li>
+        <li class="list-group-item">Adresse: {{entreprise.adresse}}</li>
+        <li class="list-group-item">SIRET: {{entreprise.siret}}</li>
+        <li class="list-group-item">Tel. {{entreprise.telephone}}</li>
+      </ul>
+      <button type="button" class="btn btn-info" (click)="onEdit()">Modifier</button>
+    </div>
+  </div>
+</div>
+

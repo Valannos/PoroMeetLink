@@ -1,0 +1,75 @@
+<app-poro-nav></app-poro-nav>
+<div *ngIf="(!undefinedEntreprise && isEmploye() || (isCandidat()))" class="container">
+  <button *ngIf="isEmploye()" type="button" (click)="addAnnonce()" class="btn btn-primary">
+    <i class="fas fa-newspaper"></i> Poster une annonce
+  </button>
+
+  <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+
+  <div class="accordion mt-2" id="accordionExample">
+    <div class="card text-center" *ngFor="let annonce of annonces">
+      <div class="card-header" [id]="'heading-' + annonce.id">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" [attr.data-target]="'#collapse-' + annonce.id" aria-expanded="false"
+            [attr.aria-controls]="'#collapse-' + annonce.id">
+            Annonce N°{{annonce.id}} : {{annonce.intitule}}
+          </button>
+          <span *ngIf="annonce.valid && isEmploye()" class="badge badge-success badge-pill">Publiée</span>
+          <span *ngIf="!annonce.valid && isEmploye()" class="badge badge-secondary badge-pill">A valider</span>
+        </h5>
+      </div>
+      <div [id]="'collapse-' + annonce.id" class="collapse" [attr.aria-labelledby]="'heading-' + annonce.id" data-parent="#accordionExample">
+        <div class="card-body">
+          <h5 class="card-title">Niveau souhaité : {{annonce.niveauExperience}}</h5>
+          <p class="font-weight-light">Type de contrat: {{annonce.typeContrat}}</p>
+          <h6 class="card-subtitle mb-2 text-muted">Début: {{annonce.dateDebut | date:'dd/MM/yyyy'}}</h6>
+          <h6 *ngIf="annonce.typeContrat !== 'CDI'" class="card-subtitle mb-2 text-muted">Fin: {{annonce.dateFin | date:'dd/MM/yyyy'}}
+          </h6>
+          <h5 class="card-title">Description: </h5>
+          <p class="font-weight-light">{{annonce.description}}</p>
+          <div class="d-flex p-2 flex-wrap">
+            <div *ngFor="let ca of annonce.competenceAnnonce">
+              <app-comptence-annonce-details (deleteEmitter)="handleDeletedCompetenceAnnonce($event)" [competencesAnnonce]="ca"></app-comptence-annonce-details>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            <button *ngIf="!annonce.valid && isEmploye()" type="button" class="btn btn-success mr-2" (click)="valideAndPublish(annonce)">
+              <i class="fas fa-check"></i> Valider
+            </button>
+            <button *ngIf="annonce.valid && isEmploye()" type="button" class="btn btn-warning mr-2" (click)="unvalid(annonce)">
+              <i class="fas fa-ban"></i> Dévalider
+            </button>
+            <button *ngIf="isEmploye()" type="button" class="btn btn-primary mr-2" (click)="addCompetenceAnnonce(annonce)">
+              <i class="fas fa-toolbox"></i> Ajouter une compétence
+            </button>
+            <button *ngIf="isEmploye()" type="button" (click)="edit(annonce)" class="btn btn-secondary mr-2">
+              <i class="fas fa-pencil-alt"></i> Modifier
+            </button>
+            <button *ngIf="isEmploye() && annonce.valid" type="button" class="btn btn-info mr-2">
+              <i class="fas fa-book-open"></i> Chercher candidat
+            </button>
+            <button *ngIf="isEmploye()" type="button" class="btn btn-danger" (click)="delete(annonce)">
+              <i class="fas fa-times"></i> Supprimer
+            </button>
+            <button *ngIf="isCandidat()" type="button" class="btn btn-success" (click)="postuler(annonce)">
+              <i class="fas fa-location-arrow"></i> Postuler
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <p *ngIf="(undefinedEntreprise && isEmploye())" class="alert alert-warning text-center" role="alert">
+      Les détails de l'entreprise n'ont pas été renseignés.
+    </p>
+  </div>
+  <div class="container">
+    <p *ngIf="(isCandidat() && annonces.length === 0 && !isLoading)" class="alert alert-warning text-center" role="alert">
+      Aucune annonce publiée.
+    </p>
+  </div>
+  <div class="container center" *ngIf="isLoading">
+    <i class="fas fa-sync fa-spin fa-10x"></i>
+  </div>
+</div>

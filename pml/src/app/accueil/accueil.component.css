@@ -1,0 +1,20 @@
+.card-container{
+    padding-top:5vh;
+    display: flex;
+    justify-content: space-evenly;
+}
+.logo {
+    height: 30vh;
+    width:18vw;
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-size:cover;
+}
+.presentation {
+    display:flex;
+    justify-content: space-evenly;
+    padding-top:12vh;
+}
+.texte{
+    width:40vw;
+}

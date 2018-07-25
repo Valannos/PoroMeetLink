@@ -1,0 +1,50 @@
+<app-poro-nav></app-poro-nav>
+<div *ngIf="isAdminSite">
+  <div *ngIf="secteurs" class="container">
+    <div class="row mb-4">
+      <div class="col-sm-4">
+        <label class="input-group-text" for="inputGroupSelect01">Sélectionner un secteur</label>
+      </div>
+      <div class="col-sm-4">
+        <select (change)="onChange($event)" class="custom-select" id="inputGroupSelect01">
+          <option selected>{{defautSelection}}</option>
+          <option *ngFor="let secteur of secteurs" [value]="secteur.id">{{secteur.libelle}}</option>
+        </select>
+      </div>
+    </div>
+
+      <div *ngIf="competences.length === 0" class="alert alert-info text-center row" role="alert">
+        Aucune compétence enregistrée pour ce secteur.
+      </div>
+
+    <div class="row">
+      <table *ngIf="competences.length != 0" class="table-hover table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Libellé</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="competences">
+          <tr *ngFor="let comp of competences">
+            <th class="active">
+              {{comp.id}}
+            </th>
+            <td class="active">
+              {{comp.intitule}}
+            </td>
+            <td>
+              <button *ngIf="isAdminSite()" type="button" class="btn btn-warning mx-3" (click)="onEdit(comp)">Editer</button>
+              <button *ngIf="isAdminSite() && comp.isDeletable" type="button" class="btn btn-danger" (click)="onDelete(comp.id)">Supprimer</button>
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+      <div *ngIf="isAdminSite()">
+          <button type="button" (click)="addCompetence()" class="btn btn-outline-primary">Ajouter compétence</button>
+      </div>
+    </div>
+  </div>
+</div>
