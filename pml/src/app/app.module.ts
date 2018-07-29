@@ -73,6 +73,7 @@ import { ComptenceAnnonceDetailsComponent } from './component-model/competence/c
 import { ComptenceAnnonceModalComponent } from './component-model/competence/competence-annonce/comptence-annonce-modal/comptence-annonce-modal.component';
 import { PropositionCandidatureService } from './shared/services/proposition-candidature.service';
 import { PropositionModalComponent } from './component-model/proposition/proposition-modal/proposition-modal.component';
+import { HashLocationStrategy, LocationStrategy } from '../../node_modules/@angular/common';
 
 @NgModule({
   declarations: [
@@ -175,6 +176,10 @@ import { PropositionModalComponent } from './component-model/proposition/proposi
     {
       provide: NgbDateAdapter,
       useClass: NgbDateNativeAdapter
+    },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
     }
   ],
   bootstrap: [AppComponent]
