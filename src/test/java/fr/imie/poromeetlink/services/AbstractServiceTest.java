@@ -77,29 +77,4 @@ public abstract class AbstractServiceTest<T extends BaseService, U> {
     Competence competence;
     Competence competenceToSave;
 
-    // Constantes
-
-    static final String LIBELLE_SECTEUR = "LIBELLE_SECTEUR_SERVICE";
-    static final String LIBELLE_SECTEUR_TO_SAVE = "LIBELLE_SECTEUR_SERVICE_TO_SAVE";
-
-
-    /**
-     * Méthode lancée avant les tests, à utiliser pour instancier des objets, les sauvegarder etc...
-     */
-    @Before
-    public void init() {
-        secteur = new Secteur();
-        secteur.setLibelle(LIBELLE_SECTEUR);
-        secteur = secteurRepository.save(secteur);
-
-        competence = new Competence();
-        competence.setIntitule("TEST_COMPETENCE");
-        competence.setSecteur(secteur);
-
-        competence = competenceRepository.save(competence);
-
-        competenceToSave = new Competence();
-        competenceToSave.setSecteur(secteur);
-        competenceToSave.setIntitule("TEST_COMPETENCE_TO_SAVE");
-    }
 }

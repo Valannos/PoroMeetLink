@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 @DataJpaTest
 @ActiveProfiles("test")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,7 +32,7 @@ public class SecteurRepositoryTest {
     @Before
     public void init() {
         secteur = new Secteur();
-        secteur.setLibelle("TEST_SECTEUR_DAO");
+        secteur.setLibelle("BIOLOGIE");
         testEntityManager.persistAndFlush(secteur);
     }
 
@@ -38,8 +40,16 @@ public class SecteurRepositoryTest {
     @Test
     public void findByLibelleTest() {
 
-        Secteur secteurFound = repository.findByLibelle("TEST_SECTEUR_DAO").get();
+        Secteur secteurFound = repository.findByLibelle("BIOLOGIE").get();
         Assertions.assertThat(secteurFound.getLibelle()).isEqualTo(secteur.getLibelle());
 
+    }
+
+
+    @Test
+    public void getAll() {
+
+        List<Secteur> secteurs = repository.findAll();
+        secteurs.forEach(secteur -> Assertions.assertThat(secteur.getId()));
     }
 }
