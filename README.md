@@ -1,4 +1,4 @@
-**The Poro-MeetLink Project v0.7.1**
+**The Poro-MeetLink Project v0.7.3**
 
 - Backend : *SpringBoot v2.0.3*
 

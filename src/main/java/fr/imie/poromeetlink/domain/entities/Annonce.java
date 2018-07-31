@@ -55,7 +55,7 @@ public class Annonce extends ClassicEntity implements Serializable {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.PERSIST})
     private Employe employe;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "annonce")
     private Set<PropositionCandidature> propositionCandidatures = new HashSet<>();
 
     public String getIntitule() {

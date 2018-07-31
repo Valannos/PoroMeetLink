@@ -6,7 +6,7 @@
 
     <groupId>fr.imie.poromeetlink</groupId>
     <artifactId>poro-meet-link</artifactId>
-    <version>0.7.2</version>
+    <version>0.7.3</version>
     <packaging>jar</packaging>
 
     <parent>
