@@ -85,10 +85,10 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
 
                 .authorizeRequests()
-                .antMatchers( "/api/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/").permitAll()
                 .antMatchers(HttpMethod.POST, UrlConstants.REGISTER_USER_URL).permitAll()
                 .antMatchers(HttpMethod.POST, UrlConstants.LOGIN_URL).permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
 
                 .and()
 
