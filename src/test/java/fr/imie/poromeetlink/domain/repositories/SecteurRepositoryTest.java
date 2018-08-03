@@ -2,7 +2,9 @@ package fr.imie.poromeetlink.domain.repositories;
 
 
 import fr.imie.poromeetlink.domain.entities.Secteur;
+import fr.imie.poromeetlink.outils.TestConstantes;
 import org.assertj.core.api.Assertions;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,6 +14,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.validation.ConstraintViolationException;
+import java.sql.SQLException;
 import java.util.List;
 
 @DataJpaTest
@@ -52,4 +56,38 @@ public class SecteurRepositoryTest {
         List<Secteur> secteurs = repository.findAll();
         secteurs.forEach(secteur -> Assertions.assertThat(secteur.getId()));
     }
+
+    @Test
+    public void save() {
+
+        secteur = new Secteur();
+        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        Secteur secteurSaved = repository.save(secteur);
+        Assert.assertNotNull(secteurSaved.getId());
+
+    }
+    @Test
+    public void saveError() {
+
+        secteur = new Secteur();
+        try {
+            Secteur secteurSaved = repository.save(secteur);
+        } catch (Exception e) {
+            Assert.assertTrue(e instanceof ConstraintViolationException);
+        }
+    }
+
+    @Test
+    public void udate() {
+
+        secteur = repository.findByLibelle("BIOLOGIE").get();
+        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        try {
+            Secteur secteurSaved = repository.save(secteur);
+        } catch (Exception e) {
+            Assert.assertTrue(e instanceof ConstraintViolationException);
+        }
+    }
+
+
 }
