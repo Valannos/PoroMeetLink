@@ -6,6 +6,10 @@ INSERT INTO competence (intitule, id_secteur) VALUES ('C#', (SELECT id
                                                              FROM secteur
                                                              WHERE libelle = 'DEVELOPPEMENT'));
 
+INSERT INTO competence (intitule, id_secteur) VALUES ('Java 8', (SELECT id
+                                                             FROM secteur
+                                                             WHERE libelle = 'DEVELOPPEMENT'));
+
 
 INSERT INTO utilisateur (username, password, email) VALUES ('cand', '$2a$10$rz1AsntI5LGVB6dk3cZ9Uu2iFeHG2HOJa8rHRq3QPoFtXvhZ9NjMq' , 'candidat@cand.fr');
 

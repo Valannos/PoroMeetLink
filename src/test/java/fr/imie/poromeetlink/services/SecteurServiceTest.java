@@ -27,7 +27,7 @@ public class SecteurServiceTest extends AbstractServiceTest<SecteurService, Sect
     public void testGetByIntitule() {
 
 
-        Assertions.assertThat(service.getByLibelle(TestConstantes.LIBELLE_SECTEUR_SAVED).getLibelle()).isEqualTo(TestConstantes.LIBELLE_SECTEUR_SAVED);
+        Assertions.assertThat(service.getByLibelle(TestConstantes.LIBELLE_SECTEUR_SAVED_DEVELOPPEMENT).getLibelle()).isEqualTo(TestConstantes.LIBELLE_SECTEUR_SAVED_DEVELOPPEMENT);
 
     }
 
@@ -44,7 +44,7 @@ public class SecteurServiceTest extends AbstractServiceTest<SecteurService, Sect
     public void testSave() {
 
         secteurToSave = new Secteur();
-        secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         SecteurDto dto = mapper.map(secteurToSave, SecteurDto.class);
 
         try {

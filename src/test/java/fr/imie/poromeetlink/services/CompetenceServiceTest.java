@@ -8,7 +8,6 @@ import fr.imie.poromeetlink.service.dto.CompetenceDto;
 import fr.imie.poromeetlink.service.mappers.CompetenceMapper;
 import fr.imie.poromeetlink.service.services.CompetenceService;
 import org.assertj.core.api.Assertions;
-import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +42,12 @@ public class CompetenceServiceTest extends AbstractServiceTest<CompetenceService
     @Test
     public void testSave() {
         secteurToSave = new Secteur();
-        secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         secteurToSave = secteurRepository.save(secteurToSave);
 
         competenceToSave = new Competence();
         competenceToSave.setSecteur(secteurToSave);
-        competenceToSave.setIntitule(TestConstantes.LIBELLE_COMPETENCE_TO_SAVE);
+        competenceToSave.setIntitule(TestConstantes.LIBELLE_COMPETENCE_TO_SAVE_SYNTHESE_CHIMIQUE);
 
         CompetenceDto dto = mapper.competenceToDto(competenceRepository.save(competenceToSave));
         assertThat(dto.getIntitule().equals(competenceToSave.getIntitule()));

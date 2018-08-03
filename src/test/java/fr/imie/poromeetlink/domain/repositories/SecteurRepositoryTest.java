@@ -15,7 +15,6 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.validation.ConstraintViolationException;
-import java.sql.SQLException;
 import java.util.List;
 
 @DataJpaTest
@@ -61,7 +60,7 @@ public class SecteurRepositoryTest {
     public void save() {
 
         secteur = new Secteur();
-        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         Secteur secteurSaved = repository.save(secteur);
         Assert.assertNotNull(secteurSaved.getId());
 
@@ -81,7 +80,7 @@ public class SecteurRepositoryTest {
     public void udate() {
 
         secteur = repository.findByLibelle("BIOLOGIE").get();
-        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE);
+        secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         try {
             Secteur secteurSaved = repository.save(secteur);
         } catch (Exception e) {
