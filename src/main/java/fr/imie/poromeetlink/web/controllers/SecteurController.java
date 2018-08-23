@@ -16,38 +16,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.SECTEUR)
-public class SecteurController implements BaseController<SecteurDto>{
-
-    @Autowired
-    SecteurService secteurService;
+public class SecteurController extends BaseController<SecteurDto, SecteurService>{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SecteurController.class);
 
     @Override
-    public List<SecteurDto> get() {
-        return secteurService.getAll();
-    }
-
-    @Override
     public ResponseEntity<SecteurDto> save(@RequestBody SecteurDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException {
-        return ResponseEntity.ok(secteurService.saveOne(item));
+        return ResponseEntity.ok(service.saveOne(item));
     }
 
     @Override
     public ResponseEntity<SecteurDto> get(@PathVariable Long id) throws EntryNotFound {
         LOGGER.info("GET, Id: " + id);
-        return ResponseEntity.ok(secteurService.getOne(id));
+        return ResponseEntity.ok(service.getOne(id));
     }
 
     @Override
     public ResponseEntity delete(@PathVariable Long id) throws InvalidRoleException, EntryNotFound, InvalidFieldException {
         LOGGER.info("DELETE, Id: " + id);
-        return ResponseEntity.ok(secteurService.delete(id));
+        return ResponseEntity.ok(service.delete(id));
     }
 
     @Override
     public ResponseEntity<SecteurDto> update(@RequestBody SecteurDto item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, InsuffisantRightsException {
 
-        return ResponseEntity.ok(secteurService.updateOne(item));
+        return ResponseEntity.ok(service.updateOne(item));
     }
 }

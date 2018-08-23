@@ -7,4 +7,5 @@
     <include file="db.changelog-initial.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-description-size.xml" relativeToChangelogFile="true"/>
     <include file="db.changelog-init-roles.xml" relativeToChangelogFile="true"/>
+    <include file="db.changelog.init-secteurs.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

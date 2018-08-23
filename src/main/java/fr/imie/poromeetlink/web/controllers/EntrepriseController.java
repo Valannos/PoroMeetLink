@@ -15,15 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.ENTREPRISE)
-public class EntrepriseController implements BaseController<EntrepriseDto> {
-
-    @Autowired
-    EntrepriseService service;
-
-    @Override
-    public List<EntrepriseDto> get() {
-        return service.getAll();
-    }
+public class EntrepriseController extends BaseController<EntrepriseDto, EntrepriseService> {
 
     @Override
     public ResponseEntity<EntrepriseDto> save(@RequestBody EntrepriseDto item) throws InvalidFieldException, InvalidRoleException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {

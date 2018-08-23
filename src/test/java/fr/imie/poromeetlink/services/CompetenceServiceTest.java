@@ -3,44 +3,33 @@ package fr.imie.poromeetlink.services;
 import fr.imie.poromeetlink.domain.entities.Competence;
 import fr.imie.poromeetlink.domain.entities.Secteur;
 import fr.imie.poromeetlink.outils.TestConstantes;
-import fr.imie.poromeetlink.outils.exceptions.EntryNotFound;
 import fr.imie.poromeetlink.service.dto.CompetenceDto;
 import fr.imie.poromeetlink.service.mappers.CompetenceMapper;
 import fr.imie.poromeetlink.service.services.CompetenceService;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CompetenceServiceTest extends AbstractServiceTest<CompetenceService, CompetenceMapper> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CompetenceServiceTest.class);
-
     @Test
-    public void testGetAll() {
-
-        dtos = service.getAll();
-        dtos.forEach(dto -> Assertions.assertThat(dto.getId() != null));
-
+    public void test_getAll_ReturnExpectedResult() {
+        service.getAll().forEach(dto -> assertThat(dto.getId()).isNotNull());
     }
 
     @Test
-    public void testGetOne() {
+    public void test_getOne_ReturnExpectedResult() {
         try {
             CompetenceDto dto = service.getOne(competence.getId());
-            assertThat(dto.getIntitule().equals(competence.getIntitule()));
-            assertThat(dto.getSecteur().getId().equals(competence.getSecteur().getId()));
+            assertThat(dto.getIntitule()).isEqualTo(competence.getIntitule());
+            assertThat(dto.getSecteur().getId()).isEqualTo(competence.getSecteur().getId());
         } catch (Exception e) {
-            assertThat(e instanceof EntryNotFound);
+            e.printStackTrace();
         }
-
-
     }
 
     @Test
-    public void testSave() {
+    public void test_save_returnExpectedResult() {
         secteurToSave = new Secteur();
         secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         secteurToSave = secteurRepository.save(secteurToSave);
@@ -50,10 +39,8 @@ public class CompetenceServiceTest extends AbstractServiceTest<CompetenceService
         competenceToSave.setIntitule(TestConstantes.LIBELLE_COMPETENCE_TO_SAVE_SYNTHESE_CHIMIQUE);
 
         CompetenceDto dto = mapper.competenceToDto(competenceRepository.save(competenceToSave));
-        assertThat(dto.getIntitule().equals(competenceToSave.getIntitule()));
-        assertThat(competenceToSave.getId() != null);
+        assertThat(dto.getIntitule()).isEqualTo(competenceToSave.getIntitule());
+        assertThat(competenceToSave.getId()).isNotNull();
 
     }
-
-
 }

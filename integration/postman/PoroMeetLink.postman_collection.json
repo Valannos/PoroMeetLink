@@ -1,0 +1,533 @@
+{
+	"info": {
+		"_postman_id": "43aa901f-dbc8-43e1-9d60-a197860897a9",
+		"name": "PoroMeetLink",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Secteur",
+			"item": [
+				{
+					"name": "Login as admin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "053f060f-2ee0-4d85-a59e-d31f5434705c",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set('token', jsonData.token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"masteradmin\",\n\t\"password\":\"poro\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Secteur",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa3e7d7c-b4c8-467c-a68f-4cf682c3607f",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"pm.environment.set('idSecteur', jsonData.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"libelle\" : \"PHYSIQUE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/secteur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"secteur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Secteur",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aad8b729-891c-48af-a7c0-ac60716d769b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"",
+									"pm.test(\"JSON is not null\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).is.not.null",
+									"    jsonData.forEach(data => {",
+									"        pm.expect(data.libelle).is.not.null;",
+									"        pm.expect(data.id).is.not.null;",
+									"    });",
+									" ",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/api/secteur",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"secteur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT Secteur",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"id\": \"{{idSecteur}}\",\n\"libelle\" : \"BIOCHIMIE\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/secteur/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"secteur",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/api/secteur/{{idSecteur}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"secteur",
+								"{{idSecteur}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Utilisateur",
+			"item": [
+				{
+					"name": "Login as Admin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"masteradmin\",\n\t\"password\":\"poro\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Admin COMPTE",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"masteradmin\",\n\t\"password\":\"test\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"super_admin\",\n\t\"password\":\"pass\",\n\t\"email\":\"admin@poromeetlink.com\",\n\t\"roles\" : [\n\t\t\n\t\t\"ROLE_ADMINISTRATEUR_SITE\"\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/utilisateur",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utilisateur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Admin Compte",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"super_admin\",\n\t\"password\":\"pass\",\n\t\"email\":\"admin@poromeetlink.com\",\n\t\"roles\" : [\n\t\t\n\t\t\"ROLE_ADMINISTRATEUR_COMPTE\"\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/utilisateur",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utilisateur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Current",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"super_admin\",\n\t\"password\":\"pass\",\n\t\"email\":\"admin@poromeetlink.com\",\n\t\"roles\" : [\n\t\t\n\t\t\"ROLE_ADMINISTRATEUR_COMPTE\"\n\t\t]\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/utilisateur/11",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utilisateur",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Candidat Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "\"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJjYW5kaWRhdCIsInNjb3BlcyI6WyJST0xFX0NBTkRJREFUIl0sImlhdCI6MTUyNDc0ODAzNywiZXhwIjoxNTI0NzUxNjM3fQ.Q8kOhAQYpbZC7W8xMQs3LEM2VPR1T1P9ELae8i6uK9ZpdULCXM3uy437blLjolGCrWPZOEu9pyRGYQcKHaCEgw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"bob\",\n\t\"password\":\"pass\",\n\t\"email\":\"bob@test.com\",\n\t\"roles\" : [\n\t\t\n\t\t\"ROLE_CANDIDAT\"\n\t\t]\n}\n"
+						},
+						"url": {
+							"raw": "localhost:8080/api/utilisateur",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"utilisateur"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login as Candidat",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "",
+								"value": "application/json "
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\":\"candidat\",\n\t\"password\":\"pass\"\n}"
+						},
+						"url": {
+							"raw": "localhost:8080/api/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Competence",
+			"item": [
+				{
+					"name": "POST Competence",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidat",
+			"item": [
+				{
+					"name": "POST",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJCb2IiLCJzY29wZXMiOlsiUk9MRV9DQU5ESURBVCJdLCJpYXQiOjE1MjQ4MjI0NDQsImV4cCI6MTUyNDgyNjA0NH0.MhesdNMnan5EwiLAHAxWz-yFzvpWUZF0vvB4DcpWxqcGoJEQK-UsaHySp3niIzFXRNCvHGMmDckDPUlXI8lHoQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nom\":\"myname\",\n\t\"prenom\":\"mylastname\",\n\t\"email\":\"bldddacl@imie.fr\",\n\t\"dateNaissance\":\"1985-04-23T18:09:18.801Z\",\n\t\"ville\": \"Grenoble\"\n\t\n}\n"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/candidat",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"candidat"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CompetenceCandidat",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

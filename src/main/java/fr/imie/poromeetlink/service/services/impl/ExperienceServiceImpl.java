@@ -23,8 +23,12 @@ import java.util.Optional;
 @Service
 public class ExperienceServiceImpl extends AbstractService<ExperienceRepository> implements ExperienceService {
 
+    private final ExperienceMapper mapper;
+
     @Autowired
-    ExperienceMapper mapper;
+    public ExperienceServiceImpl(ExperienceMapper mapper) {
+        this.mapper = mapper;
+    }
 
     @Override
     public List<ExperienceDto> getAll() {

@@ -46,4 +46,7 @@ public class FieldUtils {
 
     public static final String ACCROCHE = "accroche";
 
+    public static final String PROPOSITION_CANDIDATURE = "propositionCandidature";
+
+
 }

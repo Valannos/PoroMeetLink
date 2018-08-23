@@ -13,16 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.DIPLOME)
-public class DiplomeController implements BaseController<DiplomeDto> {
-
-    @Autowired
-    DiplomeService service;
-
-
-    @Override
-    public List<DiplomeDto> get() {
-        return service.getAll();
-    }
+public class DiplomeController extends BaseController<DiplomeDto, DiplomeService> {
 
     @Override
     public ResponseEntity<DiplomeDto> save(@RequestBody DiplomeDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {

@@ -16,45 +16,34 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = UrlConstants.API_URL +  EntityUtils.UTILISATEUR)
-public class UtilisateurController implements BaseController<UtilisateurDto> {
-
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(UtilisateurController.class);
-
-    @Autowired
-    UtilisateurService utilisateurService;
-
-    @Override
-    public List<UtilisateurDto> get() {
-        return utilisateurService.getAll();
-    }
+public class UtilisateurController extends BaseController<UtilisateurDto, UtilisateurService> {
 
     @Override
     public ResponseEntity<UtilisateurDto> save(@RequestBody UtilisateurDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException {
 
-             item = utilisateurService.saveOne(item);
+             item = service.saveOne(item);
 
         return ResponseEntity.ok().body(item);
     }
 
     @Override
     public ResponseEntity<UtilisateurDto> get(@PathVariable Long id) throws EntryNotFound, WrongOwnerException {
-        return ResponseEntity.ok(utilisateurService.getOne(id));
+        return ResponseEntity.ok(service.getOne(id));
     }
 
     @Override
     public ResponseEntity delete(@PathVariable Long id) throws InvalidRoleException, EntryNotFound, InvalidFieldException {
-        return ResponseEntity.ok(utilisateurService.delete(id));
+        return ResponseEntity.ok(service.delete(id));
     }
 
     @Override
     public ResponseEntity<UtilisateurDto> update(@RequestBody UtilisateurDto item) throws EntryNotFound, InvalidFieldException, NoSuchFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
-        return ResponseEntity.ok(utilisateurService.updateOne(item));
+        return ResponseEntity.ok(service.updateOne(item));
     }
 
     @RequestMapping(path = UrlConstants.REFRESH_TOKEN, method = RequestMethod.POST)
     public ResponseEntity<JwtToken> refreshToken(@RequestBody String token) throws WrongOwnerException {
-        return ResponseEntity.ok(utilisateurService.refreshToken(token));
+        return ResponseEntity.ok(service.refreshToken(token));
     }
 
     /**
@@ -63,7 +52,7 @@ public class UtilisateurController implements BaseController<UtilisateurDto> {
      */
     @RequestMapping(path = "/current", method = RequestMethod.GET)
     public ResponseEntity<UtilisateurDto> getCurrentUtilisateur() {
-        return ResponseEntity.ok(utilisateurService.getAuthenticatedUtilisateurDto());
+        return ResponseEntity.ok(service.getAuthenticatedUtilisateurDto());
     }
 
     /**
@@ -75,6 +64,6 @@ public class UtilisateurController implements BaseController<UtilisateurDto> {
     @RequestMapping(path = "/suspend/{id}", method = RequestMethod.PUT)
     public ResponseEntity<UtilisateurDto> suspendUserById(@PathVariable Long id) throws EntryNotFound {
 
-        return ResponseEntity.ok().body(utilisateurService.suspendre(id));
+        return ResponseEntity.ok().body(service.suspendre(id));
     }
 }

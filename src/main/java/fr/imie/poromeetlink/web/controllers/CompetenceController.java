@@ -12,15 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.COMPETENCE)
-public class CompetenceController implements BaseController<CompetenceDto> {
-
-    @Autowired
-    CompetenceService service;
-
-    @Override
-    public List<CompetenceDto> get() {
-        return service.getAll();
-    }
+public class CompetenceController extends BaseController<CompetenceDto, CompetenceService> {
 
     @Override
     public ResponseEntity<CompetenceDto> save(@RequestBody CompetenceDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {

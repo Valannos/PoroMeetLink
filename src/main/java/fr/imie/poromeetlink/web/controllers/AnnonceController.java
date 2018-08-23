@@ -12,15 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.ANNONCE)
-public class AnnonceController implements BaseController<AnnonceDto> {
-
-    @Autowired
-    private AnnonceService service;
-
-    @Override
-    public List<AnnonceDto> get() {
-        return service.getAll();
-    }
+public class AnnonceController extends BaseController<AnnonceDto, AnnonceService> {
 
     @Override
     public ResponseEntity<AnnonceDto> save(@RequestBody AnnonceDto item) throws InsuffisantRightsException, InvalidRoleException, InvalidFieldException, NoSuchFieldException, WrongOwnerException, DuplicateEntryException, EntryNotFound {

@@ -20,6 +20,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+// entry point for all assertThat methods and utility methods (e.g. entry)
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
@@ -46,15 +48,15 @@ public class TestAPISecteur {
     }
 
     @Test
-    public void adminGetAllTest() {
+    public void test_getAll_asAdministrateurSite_returnExpectedResult() {
 
 
         String token = jwtTest.createJWT("masteradmin", RoleUtils.ADMINISTRATEUR_SITE);
         try {
           MockHttpServletResponse response =  mvc.perform(MockMvcRequestBuilders.get("/api/secteur").header("Authorization", "Bearer " + token)).andReturn().getResponse();
-            Assert.assertNotNull(response);
-            Assert.assertEquals(response.getStatus(), HttpStatus.OK.value());
-            tableJson.parse(response.getContentAsString()).getObject().forEach(secteur -> Assert.assertNotNull(secteur.getId()));
+            assertThat(response).isNotNull();
+            assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
+            tableJson.parse(response.getContentAsString()).getObject().forEach(secteur -> assertThat(secteur.getId()).isNotNull());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,7 +64,7 @@ public class TestAPISecteur {
     }
 
     @Test
-    public void anonymousGetAllTest() {
+    public void test_getAll_asAnonymouseUser_returnUnauthorized() {
 
         try {
             int response =  mvc.perform(MockMvcRequestBuilders
@@ -70,14 +72,14 @@ public class TestAPISecteur {
                                .andReturn()
                                .getResponse()
                                .getStatus();
-            Assert.assertEquals(response, HttpStatus.UNAUTHORIZED.value());
+            assertThat(response).isEqualTo(HttpStatus.UNAUTHORIZED.value());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
     @Test
-    public void adminSaveSecteur() {
+    public void test_save_asAdministrateurSite_returnExpectedResult() {
 
         String token = jwtTest.createJWT("masteradmin", RoleUtils.ADMINISTRATEUR_SITE);
 
@@ -91,11 +93,11 @@ public class TestAPISecteur {
                                                     .content(json.write(dto).getJson()))
                                                     .andReturn()
                                                     .getResponse();
-            Assert.assertNotNull(response);
-            Assert.assertEquals(response.getStatus(), HttpStatus.OK.value());
+            assertThat(response).isNotNull();
+            assertThat(response).isEqualTo(HttpStatus.OK.value());
             SecteurDto dtoSaved = json.parse(response.getContentAsString()).getObject();
-            Assert.assertEquals(dto.getLibelle(), dtoSaved.getLibelle());
-            Assert.assertNotNull(dtoSaved.getId());
+            assertThat(dtoSaved.getLibelle()).isEqualTo(dto.getLibelle());
+            assertThat(dtoSaved.getId()).isNotNull();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -114,8 +116,8 @@ public class TestAPISecteur {
                     .header("Authorization", "Bearer " + token))
                     .andReturn()
                     .getResponse();
-            Assert.assertNotNull(response);
-            Assert.assertEquals(response.getStatus(), HttpStatus.OK.value());
+            assertThat(response).isNotNull();
+            assertThat(response).isEqualTo(HttpStatus.OK.value());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +126,7 @@ public class TestAPISecteur {
     }
 
     @Test
-    public void adminGetSecteurById() {
+    public void test_getById_asAdministrateurSite_returnExpectedResult() {
 
         String token = jwtTest.createJWT("masteradmin", RoleUtils.ADMINISTRATEUR_SITE);
 
@@ -135,11 +137,11 @@ public class TestAPISecteur {
                     .contentType(MediaType.APPLICATION_JSON))
                     .andReturn()
                     .getResponse();
-            Assert.assertNotNull(response);
-            Assert.assertEquals(response.getStatus(), HttpStatus.OK.value());
             SecteurDto dto = json.parse(response.getContentAsString()).getObject();
-            Assert.assertEquals(dto.getLibelle(), "secteur_libelle");
-            Assert.assertNotNull(dto.getId());
+            assertThat(response).isNotNull();
+            assertThat(response).isEqualTo(HttpStatus.OK.value());
+            assertThat(dto.getLibelle()).isNotNull();
+            assertThat(dto.getId()).isEqualTo(3);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -147,7 +149,7 @@ public class TestAPISecteur {
 
     }
     @Test
-    public void adminUpdateSecteur() {
+    public void test_update_asAdministrateurSite_returnExpectedResult() {
 
         String token = jwtTest.createJWT("masteradmin", RoleUtils.ADMINISTRATEUR_SITE);
 
@@ -162,11 +164,11 @@ public class TestAPISecteur {
                     .content(json.write(dto).getJson()))
                     .andReturn()
                     .getResponse();
-            Assert.assertNotNull(response);
-            Assert.assertEquals(response.getStatus(), HttpStatus.OK.value());
+            assertThat(response).isNotNull();
+            assertThat(response).isEqualTo(HttpStatus.OK.value());
             SecteurDto dtoUpdated = json.parse(response.getContentAsString()).getObject();
-            Assert.assertEquals(dto.getLibelle(), dtoUpdated.getLibelle());
-            Assert.assertNotNull(dtoUpdated.getId());
+            assertThat(dtoUpdated.getLibelle()).isEqualTo(dto.getLibelle());
+            assertThat(dtoUpdated.getId()).isNotNull();
 
         } catch (Exception e) {
             e.printStackTrace();

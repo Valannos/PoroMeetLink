@@ -19,29 +19,24 @@ import org.springframework.security.test.context.support.WithMockUser;
 public class SecteurServiceTest extends AbstractServiceTest<SecteurService, SecteurMapper> {
 
     @Test
-    public void testService() {
-        Assert.assertNotNull(service);
+    public void test_service_IsLoaded() {
+        Assertions.assertThat(service).isNotNull();
     }
 
     @Test
-    public void testGetByIntitule() {
-
+    public void test_getByIntitule_returnExpectedResult() {
 
         Assertions.assertThat(service.getByLibelle(TestConstantes.LIBELLE_SECTEUR_SAVED_DEVELOPPEMENT).getLibelle()).isEqualTo(TestConstantes.LIBELLE_SECTEUR_SAVED_DEVELOPPEMENT);
-
     }
 
     @Test
-    public void testGetAll() {
-
-        service.getAll().forEach(secteurDto ->
-                Assertions.assertThat(secteurDto.getId() != null)
-        );
+    public void test_getetAll_returnExpectedResult() {
+        service.getAll().forEach(secteurDto -> Assertions.assertThat(secteurDto.getId()).isNotNull());
     }
 
     @Test
     @WithMockUser(roles="ADMINISTRATEUR_SITE")
-    public void testSave() {
+    public void test_save_returnExpectedResult() {
 
         secteurToSave = new Secteur();
         secteurToSave.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
@@ -54,6 +49,4 @@ public class SecteurServiceTest extends AbstractServiceTest<SecteurService, Sect
             e.printStackTrace();
         }
     }
-
-
 }

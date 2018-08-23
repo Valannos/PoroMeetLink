@@ -18,34 +18,26 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.CANDIDAT)
-public class CandidatController implements BaseController<CandidatDto> {
-
-    @Autowired
-    CandidatService candidatService;
-
-    @Override
-    public List<CandidatDto> get() {
-        return candidatService.getAll();
-    }
+public class CandidatController extends BaseController<CandidatDto, CandidatService> {
 
     @Override
     public ResponseEntity<CandidatDto> save(@RequestBody CandidatDto item) throws InsuffisantRightsException, InvalidRoleException, InvalidFieldException, NoSuchFieldException, WrongOwnerException, DuplicateEntryException, EntryNotFound {
-        return ResponseEntity.ok().body(candidatService.saveOne(item));
+        return ResponseEntity.ok().body(service.saveOne(item));
     }
 
     @Override
     public ResponseEntity<CandidatDto> get(@PathVariable Long id) throws EntryNotFound, WrongOwnerException {
-        return ResponseEntity.ok(candidatService.getOne(id));
+        return ResponseEntity.ok(service.getOne(id));
     }
 
     @Override
     public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
-        return ResponseEntity.ok().body(candidatService.delete(id));
+        return ResponseEntity.ok().body(service.delete(id));
     }
 
     @Override
     public ResponseEntity<CandidatDto> update(@RequestBody CandidatDto item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
-        return ResponseEntity.ok(candidatService.updateOne(item));
+        return ResponseEntity.ok(service.updateOne(item));
     }
 
 }

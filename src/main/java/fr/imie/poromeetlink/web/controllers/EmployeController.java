@@ -13,38 +13,30 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.EMPLOYE)
-public class EmployeController implements BaseController<EmployeDto> {
-
-    @Autowired
-    EmployeService employeService;
-
-    @Override
-    public List<EmployeDto> get() {
-        return employeService.getAll();
-    }
+public class EmployeController extends BaseController<EmployeDto, EmployeService> {
 
     @Override
     public ResponseEntity<EmployeDto> save(@RequestBody EmployeDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {
-        return ResponseEntity.ok(employeService.saveOne(item));
+        return ResponseEntity.ok(service.saveOne(item));
     }
 
     @Override
     public ResponseEntity<EmployeDto> get(@PathVariable Long id) throws EntryNotFound, WrongOwnerException {
-        return ResponseEntity.ok(employeService.getOne(id));
+        return ResponseEntity.ok(service.getOne(id));
     }
 
     @Override
     public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidFieldException, InvalidRoleException, WrongOwnerException {
-        return ResponseEntity.ok(employeService.delete(id));
+        return ResponseEntity.ok(service.delete(id));
     }
 
     @Override
     public ResponseEntity<EmployeDto> update(@RequestBody EmployeDto item) throws EntryNotFound, InvalidFieldException, NoSuchFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
-        return ResponseEntity.ok(employeService.updateOne(item));
+        return ResponseEntity.ok(service.updateOne(item));
     }
 
     @RequestMapping(path = "/byEntreprise" + UrlConstants.ID_URL, method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<EmployeDto>> getEmployesEntreprise(@PathVariable Long id) throws EntryNotFound, WrongOwnerException {
-        return ResponseEntity.ok(employeService.getAllEmployesByEntreprise(id));
+        return ResponseEntity.ok(service.getAllEmployesByEntreprise(id));
     }
 }

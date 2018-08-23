@@ -15,15 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.EXPERIENCE)
-public class ExperienceController implements BaseController<ExperienceDto> {
-
-    @Autowired
-    ExperienceService service;
-
-    @Override
-    public List<ExperienceDto> get() {
-        return service.getAll();
-    }
+public class ExperienceController extends BaseController<ExperienceDto, ExperienceService> {
 
     @Override
     public ResponseEntity<ExperienceDto> save(@RequestBody ExperienceDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {
