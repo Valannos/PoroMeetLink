@@ -32,10 +32,10 @@ import java.util.List;
 public class TestAPISecteur {
 
     @Autowired
-    private MockMvc mvc;
+    protected MockMvc mvc;
 
     @Autowired
-    JwtTest jwtTest;
+    protected JwtTest jwtTest;
 
     private JacksonTester<SecteurDto> json;
 
@@ -94,7 +94,7 @@ public class TestAPISecteur {
                                                     .andReturn()
                                                     .getResponse();
             assertThat(response).isNotNull();
-            assertThat(response).isEqualTo(HttpStatus.OK.value());
+            assertThat(response.getStatus()).isIn(HttpStatus.OK.value());
             SecteurDto dtoSaved = json.parse(response.getContentAsString()).getObject();
             assertThat(dtoSaved.getLibelle()).isEqualTo(dto.getLibelle());
             assertThat(dtoSaved.getId()).isNotNull();
@@ -117,7 +117,7 @@ public class TestAPISecteur {
                     .andReturn()
                     .getResponse();
             assertThat(response).isNotNull();
-            assertThat(response).isEqualTo(HttpStatus.OK.value());
+            assertThat(response.getStatus()).isIn(HttpStatus.OK.value());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -132,16 +132,16 @@ public class TestAPISecteur {
 
         try {
             MockHttpServletResponse response =  mvc.perform(MockMvcRequestBuilders
-                    .get("/api/secteur/3")
+                    .get("/api/secteur/1")
                     .header("Authorization", "Bearer " + token)
                     .contentType(MediaType.APPLICATION_JSON))
                     .andReturn()
                     .getResponse();
             SecteurDto dto = json.parse(response.getContentAsString()).getObject();
             assertThat(response).isNotNull();
-            assertThat(response).isEqualTo(HttpStatus.OK.value());
+            assertThat(response.getStatus()).isIn(HttpStatus.OK.value());
             assertThat(dto.getLibelle()).isNotNull();
-            assertThat(dto.getId()).isEqualTo(3);
+            assertThat(dto.getId()).isEqualTo(1);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,7 +155,7 @@ public class TestAPISecteur {
 
         try {
             SecteurDto dto = new SecteurDto();
-            dto.setId(3L);
+            dto.setId(1L);
             dto.setLibelle("CHIMIE_ORGANIQUE");
             MockHttpServletResponse response =  mvc.perform(MockMvcRequestBuilders
                     .put("/api/secteur")
@@ -165,7 +165,7 @@ public class TestAPISecteur {
                     .andReturn()
                     .getResponse();
             assertThat(response).isNotNull();
-            assertThat(response).isEqualTo(HttpStatus.OK.value());
+            assertThat(response.getStatus()).isIn(HttpStatus.OK.value());
             SecteurDto dtoUpdated = json.parse(response.getContentAsString()).getObject();
             assertThat(dtoUpdated.getLibelle()).isEqualTo(dto.getLibelle());
             assertThat(dtoUpdated.getId()).isNotNull();
