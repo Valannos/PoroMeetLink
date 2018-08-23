@@ -6,11 +6,23 @@ import fr.imie.poromeetlink.outils.TestConstantes;
 import fr.imie.poromeetlink.service.dto.CompetenceDto;
 import fr.imie.poromeetlink.service.mappers.CompetenceMapper;
 import fr.imie.poromeetlink.service.services.CompetenceService;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CompetenceServiceTest extends AbstractServiceTest<CompetenceService, CompetenceMapper> {
+
+    @Before
+    public void init() {
+        secteur = new Secteur();
+        secteur.setLibelle("libelle_secteur_test");
+        secteur = secteurRepository.save(secteur);
+        competence = new Competence();
+        competence.setIntitule("libelle_competence_test");
+        competence.setSecteur(secteur);
+        competence = competenceRepository.save(competence);
+    }
 
     @Test
     public void test_getAll_ReturnExpectedResult() {
