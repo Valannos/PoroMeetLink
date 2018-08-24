@@ -6,7 +6,7 @@
 
     <groupId>fr.imie.poromeetlink</groupId>
     <artifactId>poro-meet-link</artifactId>
-    <version>0.7.3</version>
+    <version>0.7.31</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -104,19 +104,19 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-spring</artifactId>
-            <version>1.2.4</version>
+            <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
 

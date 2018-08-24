@@ -21,7 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
-public class TestAPICompetenceCandidat extends SpringIntegrationTest {
+public class APICompetenceCandidatStepDef extends SpringIntegrationTest {
 
     private List<SecteurDto> secteurDtos;
     private List<CompetenceDto> competenceDtos;
