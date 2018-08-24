@@ -6,7 +6,7 @@
 
     <groupId>fr.imie.poromeetlink</groupId>
     <artifactId>poro-meet-link</artifactId>
-    <version>0.7.31</version>
+    <version>0.7.32</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -122,7 +122,7 @@
 
     </dependencies>
     <build>
-        <finalName>PoroMeetLink-relase</finalName>
+        <finalName>PoroMeetLink.${project.version}</finalName>
         <plugins>
             <!-- Plugin qui gère l'execution du projet Spring par Maven -->
             <plugin>
