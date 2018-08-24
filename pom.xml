@@ -122,7 +122,7 @@
 
     </dependencies>
     <build>
-        <finalName>PoroMeetLink.${project.version}</finalName>
+        <finalName>PoroMeetLink-relase</finalName>
         <plugins>
             <!-- Plugin qui gère l'execution du projet Spring par Maven -->
             <plugin>
