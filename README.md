@@ -27,4 +27,5 @@ cd pml
 ng serve
 ```
 
-3rd year group project for IMIE Rennes (FR) school
+3rd year group project for IMIE Rennes (FR) school. 
+Other contributors : Julien Niord, Juliette Saint-Jalme & Carl-Eric Celoy
