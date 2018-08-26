@@ -4,6 +4,9 @@ import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Employe}
+ */
 public class EmployeDto extends ClassicDto {
 
     /**

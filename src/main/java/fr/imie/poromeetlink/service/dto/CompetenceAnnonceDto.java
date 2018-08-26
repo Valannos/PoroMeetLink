@@ -3,8 +3,8 @@ package fr.imie.poromeetlink.service.dto;
 import fr.imie.poromeetlink.domain.entities.CompetenceAnnonceId;
 
 /**
- * Classe DTO associé à {@link fr.imie.poromeetlink.domain.entities.CompetenceAnnonce}
- * N'implémente pas {@link ClassicDto} car utilise une clé composite
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.CompetenceAnnonce}
+ * Does not extend {@link ClassicDto} because a composite key is required.
  */
 public class CompetenceAnnonceDto extends BaseEntityDto {
 

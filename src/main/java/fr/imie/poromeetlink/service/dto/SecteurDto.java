@@ -1,10 +1,13 @@
 package fr.imie.poromeetlink.service.dto;
 
 /**
- * CLasse DTO associée à {@link fr.imie.poromeetlink.domain.entities.Secteur}
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Secteur}
  */
 public class SecteurDto extends ClassicDto {
 
+    /**
+     * libelle
+     */
     private String libelle;
 
     public String getLibelle() {

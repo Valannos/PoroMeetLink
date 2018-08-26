@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Classe {@link ClassicDto} associée à l'entité {@link fr.imie.poromeetlink.domain.entities.Candidat}
+ * {@link ClassicDto} for {@link fr.imie.poromeetlink.domain.entities.Candidat}
  */
 public class CandidatDto extends ClassicDto {
 

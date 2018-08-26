@@ -2,6 +2,10 @@ package fr.imie.poromeetlink.service.dto;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * @deprecated
+ * finally not employed
+ */
 public class ContacfIdDto {
 
     @NotNull

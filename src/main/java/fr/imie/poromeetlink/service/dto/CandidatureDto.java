@@ -5,6 +5,9 @@ import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Candidature}
+ */
 public class CandidatureDto extends ClassicDto {
 
     @NotNull

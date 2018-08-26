@@ -1,7 +1,7 @@
 package fr.imie.poromeetlink.service.dto;
 
 /**
- * Classe DTO à hériter sauf pour les DTO contenant une clé composite
+ * A DTO abstract class that "classic" DTOs must extend i.e. without composite key.
  */
 public abstract class ClassicDto extends BaseEntityDto {
 

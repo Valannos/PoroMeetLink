@@ -8,6 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 
 import java.util.List;
 
+/**
+ * {@link org.springframework.stereotype.Service} for {@link fr.imie.poromeetlink.domain.entities.Annonce}
+ */
 public interface AnnonceService extends BaseService<AnnonceDto, Long> {
 
     /**

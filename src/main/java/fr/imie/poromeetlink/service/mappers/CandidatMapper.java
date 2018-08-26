@@ -8,6 +8,9 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
+/**
+ * {@link Mapper} for {@link Candidat} and {@link fr.imie.poromeetlink.service.dto.CandidatureDto}
+ */
 @Mapper(componentModel = "spring",
         uses = {DiplomeMapper.class, ExperienceMapper.class, CompetenceCandidatMapper.class, PropositionCandidatureMapper.class})
 public interface CandidatMapper {

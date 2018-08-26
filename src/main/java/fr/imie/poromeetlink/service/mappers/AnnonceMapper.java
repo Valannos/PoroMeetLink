@@ -8,6 +8,9 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
+/**
+ * {@link Mapper} for {@link Annonce} and {@link AnnonceDto}
+ */
 @Mapper(componentModel = "spring",
         uses = {MessageMapper.class, CompetenceAnnonceMapper.class, PropositionCandidatureMapper.class, EmployeMapper.class, ActeurMapper.class})
 public interface AnnonceMapper {

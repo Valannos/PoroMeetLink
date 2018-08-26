@@ -5,6 +5,9 @@ import fr.imie.poromeetlink.outils.enumerations.StatutDiplomeEnum;
 import javax.validation.constraints.NotNull;
 import java.time.Year;
 
+/**
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Diplome}
+ */
 public class DiplomeDto extends ClassicDto {
 
     @NotNull

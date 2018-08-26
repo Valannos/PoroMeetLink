@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Classe DTO pour {@link fr.imie.poromeetlink.domain.entities.Utilisateur}
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Utilisateur}
  */
 public class UtilisateurDto extends ClassicDto {
 

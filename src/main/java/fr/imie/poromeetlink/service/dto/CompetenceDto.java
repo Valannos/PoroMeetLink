@@ -2,6 +2,9 @@ package fr.imie.poromeetlink.service.dto;
 
 import javax.validation.constraints.NotNull;
 
+/**
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Competence}
+ */
 public class CompetenceDto extends ClassicDto {
 
     @NotNull

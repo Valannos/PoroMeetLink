@@ -9,6 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.Annonce}
+ */
 public class AnnonceDto extends ClassicDto {
 
     private String intitule;

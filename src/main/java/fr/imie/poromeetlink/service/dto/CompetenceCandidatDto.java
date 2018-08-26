@@ -3,7 +3,7 @@ package fr.imie.poromeetlink.service.dto;
 import fr.imie.poromeetlink.domain.entities.CompetenceCandidatId;
 
 /**
- * Classe DTO associée à l'entité {@link fr.imie.poromeetlink.domain.entities.CompetenceCandidat}
+ * DTO for {@link fr.imie.poromeetlink.domain.entities.CompetenceCandidat}
  */
 public class CompetenceCandidatDto extends BaseEntityDto {
 

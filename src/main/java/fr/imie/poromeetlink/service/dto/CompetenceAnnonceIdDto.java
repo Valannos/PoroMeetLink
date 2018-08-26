@@ -4,6 +4,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * Classe DTO associée à la clé composite {@link fr.imie.poromeetlink.domain.entities.CompetenceAnnonceId}
+ * @deprecated finally not employed
  */
 public class CompetenceAnnonceIdDto {
 
