@@ -6,7 +6,7 @@
 
     <groupId>fr.imie.poromeetlink</groupId>
     <artifactId>poro-meet-link</artifactId>
-    <version>0.7.34</version>
+    <version>0.7.4</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -119,6 +119,13 @@
             <version>1.2.5</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.4</version>
+        </dependency>
+
 
     </dependencies>
     <build>
@@ -175,26 +182,7 @@
                         <artifactId>validation-api</artifactId>
                         <version>2.0.1.Final</version>
                     </dependency>
-                    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-jdbc</artifactId>
-                        <version>5.0.7.RELEASE</version>
-                    </dependency>
-                    <!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-context</artifactId>
-                        <version>5.0.7.RELEASE</version>
-                    </dependency>
-
-                    <!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
-                    <dependency>
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                        <version>5.0.7.RELEASE</version>
-                    </dependency>
-                </dependencies>
+                  </dependencies>
             </plugin>
             <!-- Gestion de dépendances NPM généré par Maven -->
             <plugin>

@@ -4,7 +4,7 @@
 
 - Frontend : *Angular 6*
 
-- RDMS : *MySQL 5.7*
+- RDMS : *PostgreSQL 10*
 
 - To allow Hibernate & Liquibase to access database you need to change login/password in *application.yml* and *liquibase.properties*
 

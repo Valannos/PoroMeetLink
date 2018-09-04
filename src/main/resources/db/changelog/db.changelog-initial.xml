@@ -1,13 +1,13 @@
 <?xml version="1.1" encoding="UTF-8" standalone="no"?>
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
-    <changeSet author="Vanel (generated)" id="1533075005513-1">
+    <changeSet author="Vanel (generated)" id="1536094595707-1">
         <createTable tableName="acteur">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="acteur_pkey"/>
             </column>
-            <column name="actif" type="BIT(1)"/>
+            <column name="actif" type="BOOLEAN"/>
             <column name="type_acteur" type="VARCHAR(255)"/>
-            <column name="valide_annonce" type="BIT(1)">
+            <column name="valide_annonce" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
             <column name="id_annonce" type="BIGINT">
@@ -18,16 +18,16 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-2">
+    <changeSet author="Vanel (generated)" id="1536094595707-2">
         <createTable tableName="annonce">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="annonce_pkey"/>
             </column>
-            <column name="date_creation" type="datetime">
+            <column name="date_creation" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_debut" type="datetime"/>
-            <column name="date_fin" type="datetime"/>
+            <column name="date_debut" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="date_fin" type="TIMESTAMP WITHOUT TIME ZONE"/>
             <column name="description" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
@@ -36,7 +36,7 @@
             </column>
             <column name="niveau_experience" type="VARCHAR(255)"/>
             <column name="type_contrat" type="VARCHAR(255)"/>
-            <column name="is_valid" type="BIT(1)">
+            <column name="is_valid" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
             <column name="employe_id" type="BIGINT">
@@ -44,12 +44,12 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-3">
+    <changeSet author="Vanel (generated)" id="1536094595707-3">
         <createTable tableName="candidat">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="candidat_pkey"/>
             </column>
-            <column name="date_naissance" type="datetime"/>
+            <column name="date_naissance" type="TIMESTAMP WITHOUT TIME ZONE"/>
             <column name="nom" type="VARCHAR(255)"/>
             <column name="pays" type="VARCHAR(255)"/>
             <column name="prenom" type="VARCHAR(255)"/>
@@ -59,15 +59,15 @@
             <column name="id_utilisateur" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-4">
+    <changeSet author="Vanel (generated)" id="1536094595707-4">
         <createTable tableName="candidature">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="candidature_pkey"/>
             </column>
-            <column name="date_creation" type="datetime">
+            <column name="date_creation" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
-            <column name="est_cloturee" type="BIT(1)">
+            <column name="est_cloturee" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
             <column name="proposition_candidature_id_annonce" type="BIGINT">
@@ -78,70 +78,70 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-5">
+    <changeSet author="Vanel (generated)" id="1536094595707-5">
         <createTable tableName="candidature_message">
             <column name="candidature_id" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="candidature_message_pkey"/>
             </column>
             <column name="message_id" type="BIGINT">
-                <constraints primaryKey="true" unique="true"/>
+                <constraints primaryKey="true" primaryKeyName="candidature_message_pkey"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-6">
+    <changeSet author="Vanel (generated)" id="1536094595707-6">
         <createTable tableName="competence">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="competence_pkey"/>
             </column>
             <column name="intitule" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
             <column name="id_secteur" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-7">
+    <changeSet author="Vanel (generated)" id="1536094595707-7">
         <createTable tableName="competence_annonce">
             <column name="id_annonce" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="competence_annonce_pkey"/>
             </column>
             <column name="id_competence" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="competence_annonce_pkey"/>
             </column>
             <column name="niveau_requis" type="SMALLINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-8">
+    <changeSet author="Vanel (generated)" id="1536094595707-8">
         <createTable tableName="competence_candidat">
             <column name="id_candidat" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="competence_candidat_pkey"/>
             </column>
             <column name="id_competence" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="competence_candidat_pkey"/>
             </column>
             <column name="niveau" type="SMALLINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-9">
+    <changeSet author="Vanel (generated)" id="1536094595707-9">
         <createTable tableName="contacts">
             <column name="id_candidat" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="contacts_pkey"/>
             </column>
             <column name="id_employe" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="contacts_pkey"/>
             </column>
-            <column name="bloque_par_candidat" type="BIT(1)"/>
-            <column name="date_etablissement" type="datetime"/>
+            <column name="bloque_par_candidat" type="BOOLEAN"/>
+            <column name="date_etablissement" type="TIMESTAMP WITHOUT TIME ZONE"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-10">
+    <changeSet author="Vanel (generated)" id="1536094595707-10">
         <createTable tableName="diplome">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="diplome_pkey"/>
             </column>
-            <column name="annee_obtention" type="TINYBLOB"/>
-            <column name="diplome_enum" type="INT"/>
+            <column name="annee_obtention" type="BYTEA"/>
+            <column name="diplome_enum" type="INTEGER"/>
             <column name="etablissement" type="VARCHAR(255)"/>
             <column name="intitule" type="VARCHAR(255)">
                 <constraints nullable="false"/>
@@ -151,20 +151,20 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-11">
+    <changeSet author="Vanel (generated)" id="1536094595707-11">
         <createTable tableName="diplome_type_diplome">
             <column name="id_type_diplome" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="id_diplome" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="diplome_type_diplome_pkey"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-12">
+    <changeSet author="Vanel (generated)" id="1536094595707-12">
         <createTable tableName="employe">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="employe_pkey"/>
             </column>
             <column name="libelle_poste" type="VARCHAR(255)"/>
             <column name="nom" type="VARCHAR(255)"/>
@@ -174,20 +174,20 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-13">
+    <changeSet author="Vanel (generated)" id="1536094595707-13">
         <createTable tableName="employes_entreprise">
             <column name="id_entreprise" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
             <column name="id_employe" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="employes_entreprise_pkey"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-14">
+    <changeSet author="Vanel (generated)" id="1536094595707-14">
         <createTable tableName="entreprise">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="entreprise_pkey"/>
             </column>
             <column name="adresse" type="VARCHAR(255)"/>
             <column name="intitule" type="VARCHAR(255)">
@@ -197,15 +197,15 @@
             <column name="telephone" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-15">
+    <changeSet author="Vanel (generated)" id="1536094595707-15">
         <createTable tableName="experience">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="experience_pkey"/>
             </column>
-            <column name="date_debut" type="datetime">
+            <column name="date_debut" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_fin" type="datetime">
+            <column name="date_fin" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="intitule" type="VARCHAR(255)">
@@ -219,15 +219,15 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-16">
+    <changeSet author="Vanel (generated)" id="1536094595707-16">
         <createTable tableName="message">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="message_pkey"/>
             </column>
             <column name="contenu" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_envoi" type="datetime">
+            <column name="date_envoi" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="type_message" type="VARCHAR(255)"/>
@@ -240,47 +240,47 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-17">
+    <changeSet author="Vanel (generated)" id="1536094595707-17">
         <createTable tableName="proposition_candidature">
             <column name="id_annonce" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="proposition_candidature_pkey"/>
             </column>
             <column name="id_candidat" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="proposition_candidature_pkey"/>
             </column>
-            <column name="est_acceptee" type="BIT(1)"/>
+            <column name="est_acceptee" type="BOOLEAN"/>
             <column name="accroche" type="VARCHAR(255)"/>
-            <column name="is_auteur_candidat" type="BIT(1)">
+            <column name="is_auteur_candidat" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_creation" type="datetime">
+            <column name="date_creation" type="TIMESTAMP WITHOUT TIME ZONE">
                 <constraints nullable="false"/>
             </column>
             <column name="candidature_id" type="BIGINT"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-18">
+    <changeSet author="Vanel (generated)" id="1536094595707-18">
         <createTable tableName="role">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="role_pkey"/>
             </column>
             <column name="name" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-19">
+    <changeSet author="Vanel (generated)" id="1536094595707-19">
         <createTable tableName="roles_utilisateurs">
             <column name="id_utilisateur" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="roles_utilisateurs_pkey"/>
             </column>
             <column name="id_role" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="roles_utilisateurs_pkey"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-20">
+    <changeSet author="Vanel (generated)" id="1536094595707-20">
         <createTable tableName="savoir_etre">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="savoir_etre_pkey"/>
             </column>
             <column name="id_candidat" type="BIGINT">
                 <constraints nullable="false"/>
@@ -290,60 +290,60 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-21">
+    <changeSet author="Vanel (generated)" id="1536094595707-21">
         <createTable tableName="secteur">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="secteur_pkey"/>
             </column>
             <column name="libelle" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-22">
+    <changeSet author="Vanel (generated)" id="1536094595707-22">
         <createTable tableName="secteurs_entreprises">
             <column name="id_entreprise" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="secteurs_entreprises_pkey"/>
             </column>
             <column name="id_secteur" type="BIGINT">
-                <constraints primaryKey="true"/>
+                <constraints primaryKey="true" primaryKeyName="secteurs_entreprises_pkey"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-23">
+    <changeSet author="Vanel (generated)" id="1536094595707-23">
         <createTable tableName="type_diplome">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="type_diplome_pkey"/>
             </column>
             <column name="intitule" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-24">
+    <changeSet author="Vanel (generated)" id="1536094595707-24">
         <createTable tableName="type_savoir_etre">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="type_savoir_etre_pkey"/>
             </column>
             <column name="intitule" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+                <constraints nullable="false"/>
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-25">
+    <changeSet author="Vanel (generated)" id="1536094595707-25">
         <createTable tableName="utilisateur">
-            <column autoIncrement="true" name="id" type="BIGINT">
-                <constraints primaryKey="true"/>
+            <column autoIncrement="true" name="id" type="BIGSERIAL">
+                <constraints primaryKey="true" primaryKeyName="utilisateur_pkey"/>
             </column>
-            <column name="date_bloquage" type="datetime"/>
-            <column name="date_desactivation" type="datetime"/>
+            <column name="date_bloquage" type="TIMESTAMP WITHOUT TIME ZONE"/>
+            <column name="date_desactivation" type="TIMESTAMP WITHOUT TIME ZONE"/>
             <column name="email" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column defaultValueBoolean="false" name="is_super_admin" type="BIT">
+            <column defaultValueBoolean="false" name="is_super_admin" type="BOOLEAN">
                 <constraints nullable="false"/>
             </column>
             <column name="username" type="VARCHAR(50)">
@@ -351,219 +351,118 @@
             </column>
         </createTable>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-26">
-        <createIndex indexName="FK2mrqix99ig5j8x8w5o3l4tesy" tableName="competence_candidat">
-            <column name="id_competence"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-26">
+        <addUniqueConstraint columnNames="intitule" constraintName="uk_2vywvg8wrocebmpognvis10ba" tableName="type_diplome"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-27">
-        <createIndex indexName="FK3n0xxagkncporgpjpek0oy18y" tableName="savoir_etre">
-            <column name="id_savoir_etre"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-27">
+        <addUniqueConstraint columnNames="message_id" constraintName="uk_52ardcjc4ihnc87xlc9koy9d3" tableName="candidature_message"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-28">
-        <createIndex indexName="FK3t806pojby0k0w39uc42h8h7k" tableName="acteur">
-            <column name="employe_id"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-28">
+        <addUniqueConstraint columnNames="intitule" constraintName="uk_6y2udjsy71jcr5qdprrf49jrw" tableName="competence"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-29">
-        <createIndex indexName="FK5m7wy1pbetw0i6a9iaakvlw2" tableName="candidature">
-            <column name="proposition_candidature_id_annonce"/>
-            <column name="proposition_candidature_id_candidat"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-29">
+        <addUniqueConstraint columnNames="intitule" constraintName="uk_g1wwqc7b946njqnr46ybgu2bo" tableName="type_savoir_etre"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-30">
-        <createIndex indexName="FK6nk0tb3hpfibrmu4807v7u9qc" tableName="diplome_type_diplome">
-            <column name="id_type_diplome"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-30">
+        <addUniqueConstraint columnNames="libelle" constraintName="uk_lk3enedbbv5wfi1v4lw9d0hqw" tableName="secteur"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-31">
-        <createIndex indexName="FK73w7894fli40dlpa8dqa2dt2a" tableName="experience">
-            <column name="id_candidat"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-31">
+        <addForeignKeyConstraint baseColumnNames="id_entreprise" baseTableName="secteurs_entreprises" constraintName="fk13qi7tikno8bsbho0fyk47267" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="entreprise" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-32">
-        <createIndex indexName="FK8p8j1f8nvu4g2m7mlw19bh64t" tableName="roles_utilisateurs">
-            <column name="id_role"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-32">
+        <addForeignKeyConstraint baseColumnNames="id_competence" baseTableName="competence_candidat" constraintName="fk2mrqix99ig5j8x8w5o3l4tesy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="competence" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-33">
-        <createIndex indexName="FKbnik2iq0f6orq3l4joaqw5jy" tableName="acteur">
-            <column name="id_annonce"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-33">
+        <addForeignKeyConstraint baseColumnNames="message_id" baseTableName="candidature_message" constraintName="fk2nwx8pl6jqek21dwk4liaaom7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="message" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-34">
-        <createIndex indexName="FKe1as2jo2pc0b7925of0o93cb4" tableName="annonce">
-            <column name="employe_id"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-34">
+        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="competence_annonce" constraintName="fk2nywa9kyu24lm4g3i3e0av7ix" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-35">
-        <createIndex indexName="FKejqi2vsm7p30774s5rkfnridf" tableName="employe">
-            <column name="id_utilisateur"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-35">
+        <addForeignKeyConstraint baseColumnNames="id_savoir_etre" baseTableName="savoir_etre" constraintName="fk3n0xxagkncporgpjpek0oy18y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_savoir_etre" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-36">
-        <createIndex indexName="FKffp0i2ek6stt1f0gtqeqjfsv6" tableName="competence">
-            <column name="id_secteur"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-36">
+        <addForeignKeyConstraint baseColumnNames="employe_id" baseTableName="acteur" constraintName="fk3t806pojby0k0w39uc42h8h7k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-37">
-        <createIndex indexName="FKfl1aki5qfsn27n5dh774599qx" tableName="contacts">
-            <column name="id_employe"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-37">
+        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="proposition_candidature" constraintName="fk514h8yro2x361v6i7q4iut9ce" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-38">
-        <createIndex indexName="FKj7m8gwqx561af3vkuxtld6gwu" tableName="competence_annonce">
-            <column name="id_competence"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-38">
+        <addForeignKeyConstraint baseColumnNames="proposition_candidature_id_annonce,proposition_candidature_id_candidat" baseTableName="candidature" constraintName="fk5m7wy1pbetw0i6a9iaakvlw2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_annonce,id_candidat" referencedTableName="proposition_candidature" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-39">
-        <createIndex indexName="FKmr44r31199dq6a4yj86vivwe2" tableName="diplome">
-            <column name="id_candidat"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-39">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="contacts" constraintName="fk67877sbjph15hoau1jnlxo18c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-40">
-        <createIndex indexName="FKnd22slr1s1mgvxsjhw1mg47gd" tableName="proposition_candidature">
-            <column name="id_candidat"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-40">
+        <addForeignKeyConstraint baseColumnNames="id_type_diplome" baseTableName="diplome_type_diplome" constraintName="fk6nk0tb3hpfibrmu4807v7u9qc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_diplome" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-41">
-        <createIndex indexName="FKoft1c7y2fnhi7e4h0g4ipao2x" tableName="secteurs_entreprises">
-            <column name="id_secteur"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-41">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="experience" constraintName="fk73w7894fli40dlpa8dqa2dt2a" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-42">
-        <createIndex indexName="FKofyqmqk1gsy3ogpiwf7a2c3e" tableName="proposition_candidature">
-            <column name="candidature_id"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-42">
+        <addForeignKeyConstraint baseColumnNames="id_role" baseTableName="roles_utilisateurs" constraintName="fk8p8j1f8nvu4g2m7mlw19bh64t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-43">
-        <createIndex indexName="FKorh700xkhlpnf1m1xc6u69onr" tableName="message">
-            <column name="id_destinataire"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-43">
+        <addForeignKeyConstraint baseColumnNames="id_diplome" baseTableName="diplome_type_diplome" constraintName="fk9y5c4jtsbo2vyl1rv2s9ni6y3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="diplome" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-44">
-        <createIndex indexName="FKowihgirtiiq6x8lybl61q97e4" tableName="employes_entreprise">
-            <column name="id_entreprise"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-44">
+        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="acteur" constraintName="fkbnik2iq0f6orq3l4joaqw5jy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-45">
-        <createIndex indexName="FKpd8nf4qk4kr7ksm76e2xgcysq" tableName="candidat">
-            <column name="id_utilisateur"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-45">
+        <addForeignKeyConstraint baseColumnNames="employe_id" baseTableName="annonce" constraintName="fke1as2jo2pc0b7925of0o93cb4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-46">
-        <createIndex indexName="FKr8nlpwj6j90692o7g7fe48m3s" tableName="message">
-            <column name="id_annonce"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-46">
+        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="employe" constraintName="fkejqi2vsm7p30774s5rkfnridf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-47">
-        <createIndex indexName="FKrxlmgkd3gqoi6j1s43r86g2pt" tableName="message">
-            <column name="id_expediteur"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-47">
+        <addForeignKeyConstraint baseColumnNames="id_secteur" baseTableName="competence" constraintName="fkffp0i2ek6stt1f0gtqeqjfsv6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="secteur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-48">
-        <createIndex indexName="FKt2lwc0qbe1bibg9rlqlgbjs2" tableName="savoir_etre">
-            <column name="id_candidat"/>
-        </createIndex>
+    <changeSet author="Vanel (generated)" id="1536094595707-48">
+        <addForeignKeyConstraint baseColumnNames="id_employe" baseTableName="contacts" constraintName="fkfl1aki5qfsn27n5dh774599qx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-49">
-        <addForeignKeyConstraint baseColumnNames="id_entreprise" baseTableName="secteurs_entreprises" constraintName="FK13qi7tikno8bsbho0fyk47267" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="entreprise" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-49">
+        <addForeignKeyConstraint baseColumnNames="candidature_id" baseTableName="candidature_message" constraintName="fkg0ox8ndnergdeva8kfxo3lg7c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-50">
-        <addForeignKeyConstraint baseColumnNames="id_competence" baseTableName="competence_candidat" constraintName="FK2mrqix99ig5j8x8w5o3l4tesy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="competence" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-50">
+        <addForeignKeyConstraint baseColumnNames="id_competence" baseTableName="competence_annonce" constraintName="fkj7m8gwqx561af3vkuxtld6gwu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="competence" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-51">
-        <addForeignKeyConstraint baseColumnNames="message_id" baseTableName="candidature_message" constraintName="FK2nwx8pl6jqek21dwk4liaaom7" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="message" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-51">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="diplome" constraintName="fkmr44r31199dq6a4yj86vivwe2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-52">
-        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="competence_annonce" constraintName="FK2nywa9kyu24lm4g3i3e0av7ix" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-52">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="competence_candidat" constraintName="fkmugp9q5das7p6h1ie60vowacv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-53">
-        <addForeignKeyConstraint baseColumnNames="id_savoir_etre" baseTableName="savoir_etre" constraintName="FK3n0xxagkncporgpjpek0oy18y" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_savoir_etre" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-53">
+        <addForeignKeyConstraint baseColumnNames="id_employe" baseTableName="employes_entreprise" constraintName="fkmwuitpi0ti9ltvf8k1ggdxj5u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-54">
-        <addForeignKeyConstraint baseColumnNames="employe_id" baseTableName="acteur" constraintName="FK3t806pojby0k0w39uc42h8h7k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-54">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="proposition_candidature" constraintName="fknd22slr1s1mgvxsjhw1mg47gd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-55">
-        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="proposition_candidature" constraintName="FK514h8yro2x361v6i7q4iut9ce" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-55">
+        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="roles_utilisateurs" constraintName="fknnkw2smkwhjybn5y8rqqg78n0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-56">
-        <addForeignKeyConstraint baseColumnNames="proposition_candidature_id_annonce,proposition_candidature_id_candidat" baseTableName="candidature" constraintName="FK5m7wy1pbetw0i6a9iaakvlw2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id_annonce,id_candidat" referencedTableName="proposition_candidature" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-56">
+        <addForeignKeyConstraint baseColumnNames="id_secteur" baseTableName="secteurs_entreprises" constraintName="fkoft1c7y2fnhi7e4h0g4ipao2x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="secteur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-57">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="contacts" constraintName="FK67877sbjph15hoau1jnlxo18c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-57">
+        <addForeignKeyConstraint baseColumnNames="candidature_id" baseTableName="proposition_candidature" constraintName="fkofyqmqk1gsy3ogpiwf7a2c3e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-58">
-        <addForeignKeyConstraint baseColumnNames="id_type_diplome" baseTableName="diplome_type_diplome" constraintName="FK6nk0tb3hpfibrmu4807v7u9qc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="type_diplome" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-58">
+        <addForeignKeyConstraint baseColumnNames="id_destinataire" baseTableName="message" constraintName="fkorh700xkhlpnf1m1xc6u69onr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-59">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="experience" constraintName="FK73w7894fli40dlpa8dqa2dt2a" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-59">
+        <addForeignKeyConstraint baseColumnNames="id_entreprise" baseTableName="employes_entreprise" constraintName="fkowihgirtiiq6x8lybl61q97e4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="entreprise" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-60">
-        <addForeignKeyConstraint baseColumnNames="id_role" baseTableName="roles_utilisateurs" constraintName="FK8p8j1f8nvu4g2m7mlw19bh64t" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="role" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-60">
+        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="candidat" constraintName="fkpd8nf4qk4kr7ksm76e2xgcysq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-61">
-        <addForeignKeyConstraint baseColumnNames="id_diplome" baseTableName="diplome_type_diplome" constraintName="FK9y5c4jtsbo2vyl1rv2s9ni6y3" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="diplome" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-61">
+        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="message" constraintName="fkr8nlpwj6j90692o7g7fe48m3s" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-62">
-        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="acteur" constraintName="FKbnik2iq0f6orq3l4joaqw5jy" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="annonce" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-62">
+        <addForeignKeyConstraint baseColumnNames="id_expediteur" baseTableName="message" constraintName="fkrxlmgkd3gqoi6j1s43r86g2pt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
     </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-63">
-        <addForeignKeyConstraint baseColumnNames="employe_id" baseTableName="annonce" constraintName="FKe1as2jo2pc0b7925of0o93cb4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-64">
-        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="employe" constraintName="FKejqi2vsm7p30774s5rkfnridf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-65">
-        <addForeignKeyConstraint baseColumnNames="id_secteur" baseTableName="competence" constraintName="FKffp0i2ek6stt1f0gtqeqjfsv6" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="secteur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-66">
-        <addForeignKeyConstraint baseColumnNames="id_employe" baseTableName="contacts" constraintName="FKfl1aki5qfsn27n5dh774599qx" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-67">
-        <addForeignKeyConstraint baseColumnNames="candidature_id" baseTableName="candidature_message" constraintName="FKg0ox8ndnergdeva8kfxo3lg7c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-68">
-        <addForeignKeyConstraint baseColumnNames="id_competence" baseTableName="competence_annonce" constraintName="FKj7m8gwqx561af3vkuxtld6gwu" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="competence" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-69">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="diplome" constraintName="FKmr44r31199dq6a4yj86vivwe2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-70">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="competence_candidat" constraintName="FKmugp9q5das7p6h1ie60vowacv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-71">
-        <addForeignKeyConstraint baseColumnNames="id_employe" baseTableName="employes_entreprise" constraintName="FKmwuitpi0ti9ltvf8k1ggdxj5u" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="employe" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-72">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="proposition_candidature" constraintName="FKnd22slr1s1mgvxsjhw1mg47gd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-73">
-        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="roles_utilisateurs" constraintName="FKnnkw2smkwhjybn5y8rqqg78n0" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-74">
-        <addForeignKeyConstraint baseColumnNames="id_secteur" baseTableName="secteurs_entreprises" constraintName="FKoft1c7y2fnhi7e4h0g4ipao2x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="secteur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-75">
-        <addForeignKeyConstraint baseColumnNames="candidature_id" baseTableName="proposition_candidature" constraintName="FKofyqmqk1gsy3ogpiwf7a2c3e" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-76">
-        <addForeignKeyConstraint baseColumnNames="id_destinataire" baseTableName="message" constraintName="FKorh700xkhlpnf1m1xc6u69onr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-77">
-        <addForeignKeyConstraint baseColumnNames="id_entreprise" baseTableName="employes_entreprise" constraintName="FKowihgirtiiq6x8lybl61q97e4" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="entreprise" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-78">
-        <addForeignKeyConstraint baseColumnNames="id_utilisateur" baseTableName="candidat" constraintName="FKpd8nf4qk4kr7ksm76e2xgcysq" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-79">
-        <addForeignKeyConstraint baseColumnNames="id_annonce" baseTableName="message" constraintName="FKr8nlpwj6j90692o7g7fe48m3s" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidature" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-80">
-        <addForeignKeyConstraint baseColumnNames="id_expediteur" baseTableName="message" constraintName="FKrxlmgkd3gqoi6j1s43r86g2pt" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="utilisateur" validate="true"/>
-    </changeSet>
-    <changeSet author="Vanel (generated)" id="1533075005513-81">
-        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="savoir_etre" constraintName="FKt2lwc0qbe1bibg9rlqlgbjs2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
+    <changeSet author="Vanel (generated)" id="1536094595707-63">
+        <addForeignKeyConstraint baseColumnNames="id_candidat" baseTableName="savoir_etre" constraintName="fkt2lwc0qbe1bibg9rlqlgbjs2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="candidat" validate="true"/>
     </changeSet>
 </databaseChangeLog>

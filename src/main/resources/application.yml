@@ -6,17 +6,17 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
-    database: mysql
-    database-platform: org.hibernate.dialect.MySQL5Dialect
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
     generate-ddl: false
     properties:
       hibernate:
         format_sql: true
 
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/poromeetlink?useSSL=false&createDatabaseIfNotExist=true
-    username: root
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/poromeetlink?useSSL=false
+    username: postgres
     password: admin
 
   messages:
@@ -34,8 +34,8 @@ spring:
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
     enabled: true
-    url: jdbc:mysql://localhost:3306/poromeetlink?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
-    user: root
+    url: jdbc:postgresql://localhost:5432/poromeetlink?useUnicode=true&characterEncoding=utf8&useSSL=false
+    user: postgres
     password: admin
     check-change-log-location: true
     drop-first: false
