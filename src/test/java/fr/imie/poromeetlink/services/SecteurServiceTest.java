@@ -8,7 +8,6 @@ import fr.imie.poromeetlink.service.dto.SecteurDto;
 import fr.imie.poromeetlink.service.mappers.SecteurMapper;
 import fr.imie.poromeetlink.service.services.SecteurService;
 import org.assertj.core.api.Assertions;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.security.test.context.support.WithMockUser;
 

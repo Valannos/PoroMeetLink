@@ -5,7 +5,6 @@ import fr.imie.poromeetlink.outils.constantes.UrlConstants;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.DiplomeDto;
 import fr.imie.poromeetlink.service.services.DiplomeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +25,7 @@ public class DiplomeController extends BaseController<DiplomeDto, DiplomeService
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         return ResponseEntity.ok(service.delete(id));
     }
 

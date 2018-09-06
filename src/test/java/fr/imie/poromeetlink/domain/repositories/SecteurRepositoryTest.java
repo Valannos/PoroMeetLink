@@ -70,7 +70,7 @@ public class SecteurRepositoryTest {
 
         secteur = new Secteur();
         try {
-            Secteur secteurSaved = repository.save(secteur);
+            repository.save(secteur);
         } catch (Exception e) {
             Assert.assertTrue(e instanceof ConstraintViolationException);
         }
@@ -82,7 +82,7 @@ public class SecteurRepositoryTest {
         secteur = repository.findByLibelle("BIOLOGIE").get();
         secteur.setLibelle(TestConstantes.LIBELLE_SECTEUR_TO_SAVE_MAGIE);
         try {
-            Secteur secteurSaved = repository.save(secteur);
+            repository.save(secteur);
         } catch (Exception e) {
             Assert.assertTrue(e instanceof ConstraintViolationException);
         }

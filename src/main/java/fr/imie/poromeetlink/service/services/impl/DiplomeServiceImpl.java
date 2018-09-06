@@ -148,7 +148,7 @@ public class DiplomeServiceImpl extends AbstractService<DiplomeRepository> imple
     @Override
     public void validator(DiplomeDto dto) {
 
-        Class clazz = dto.getClass();
+        Class<? extends DiplomeDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

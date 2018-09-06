@@ -4,14 +4,11 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.ExperienceDto;
 import fr.imie.poromeetlink.service.services.ExperienceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.EXPERIENCE)
@@ -28,7 +25,7 @@ public class ExperienceController extends BaseController<ExperienceDto, Experien
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         return ResponseEntity.ok(service.delete(id));
     }
 

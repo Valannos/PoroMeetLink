@@ -35,7 +35,7 @@ public class PropositionCandidatureController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = UrlConstants.ID_CANDIDAT_ID_ANNONCE)
-    public @ResponseBody ResponseEntity delete(@PathVariable Long idAnnonce, @PathVariable Long idCandidat) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public @ResponseBody ResponseEntity<Boolean> delete(@PathVariable Long idAnnonce, @PathVariable Long idCandidat) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         return ResponseEntity.ok().body(service.delete(new PropositionCandidatureId(idCandidat, idAnnonce)));
     }
 

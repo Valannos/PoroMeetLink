@@ -7,7 +7,6 @@ import fr.imie.poromeetlink.outils.constantes.FieldUtils;
 import fr.imie.poromeetlink.outils.constantes.RoleUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.CandidatDto;
-import fr.imie.poromeetlink.service.dto.UtilisateurDto;
 import fr.imie.poromeetlink.service.mappers.CandidatMapper;
 import fr.imie.poromeetlink.service.services.CandidatService;
 import fr.imie.poromeetlink.service.services.UtilisateurService;
@@ -160,7 +159,7 @@ public class CandidatServiceImpl extends AbstractService<CandidatRepository> imp
 
         this.invalidFields.clear();
         this.nonUniqueFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends CandidatDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

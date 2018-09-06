@@ -116,7 +116,7 @@ public class CandidatureServiceImpl extends AbstractService<CandidatureRepositor
     public void validator(CandidatureDto dto) {
         this.invalidFields.clear();
         this.nonUniqueFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends CandidatureDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

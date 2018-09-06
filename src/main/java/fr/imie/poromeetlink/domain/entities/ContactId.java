@@ -13,7 +13,12 @@ import java.io.Serializable;
 @Embeddable
 public class ContactId implements Serializable {
 
-    @NotNull
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = -2193458668395356395L;
+
+	@NotNull
     private Long idCandidat;
 
     @NotNull

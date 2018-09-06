@@ -2,7 +2,6 @@ package fr.imie.poromeetlink.service.services.impl;
 
 import fr.imie.poromeetlink.domain.entities.Annonce;
 import fr.imie.poromeetlink.domain.entities.Employe;
-import fr.imie.poromeetlink.domain.entities.PropositionCandidature;
 import fr.imie.poromeetlink.domain.entities.Utilisateur;
 import fr.imie.poromeetlink.domain.repositories.AnnonceRepository;
 import fr.imie.poromeetlink.domain.repositories.EmployeRepository;
@@ -137,7 +136,7 @@ public class AnnonceServiceImpl extends AbstractService<AnnonceRepository> imple
     public void validator(AnnonceDto dto) throws NoSuchFieldException {
         this.invalidFields.clear();
         this.nonUniqueFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends AnnonceDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

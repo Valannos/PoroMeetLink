@@ -11,7 +11,12 @@ import java.time.ZonedDateTime;
 @Table(name = "contacts")
 public class Contact implements Serializable {
 
-    @EmbeddedId
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = 5860766861826093308L;
+
+	@EmbeddedId
     private ContactId id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

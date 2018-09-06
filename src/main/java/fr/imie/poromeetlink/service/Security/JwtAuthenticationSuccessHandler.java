@@ -1,7 +1,6 @@
 package fr.imie.poromeetlink.service.Security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.imie.poromeetlink.domain.entities.Role;
 import fr.imie.poromeetlink.domain.entities.Utilisateur;
 import fr.imie.poromeetlink.outils.constantes.SecurityConstants;
 import fr.imie.poromeetlink.service.Security.tokens.JwtToken;
@@ -13,9 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -24,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.*;
-import java.time.temporal.TemporalAmount;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 import java.util.stream.Collectors;

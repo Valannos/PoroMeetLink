@@ -120,7 +120,7 @@ public class CompetenceServiceImpl extends AbstractService<CompetenceRepository>
     @Override
     public void validator(CompetenceDto dto) {
         this.invalidFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends CompetenceDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

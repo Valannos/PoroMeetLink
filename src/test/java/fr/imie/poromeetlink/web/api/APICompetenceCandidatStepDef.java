@@ -5,7 +5,6 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import fr.imie.poromeetlink.SpringIntegrationTest;
-import fr.imie.poromeetlink.outils.JwtTest;
 import fr.imie.poromeetlink.outils.TestConstantes;
 import fr.imie.poromeetlink.outils.constantes.RoleUtils;
 import fr.imie.poromeetlink.service.dto.CompetenceCandidatDto;

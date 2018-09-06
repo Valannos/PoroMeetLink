@@ -6,13 +6,11 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 @Component
 @Profile("test")

@@ -41,7 +41,7 @@ public class CompetenceAnnonceController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = UrlConstants.ID_ANNONCE_ID_COMPETENCE)
-    public ResponseEntity delete(@PathVariable Long idAnnonce, @PathVariable Long idCompetence) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long idAnnonce, @PathVariable Long idCompetence) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         CompetenceAnnonceId id = new CompetenceAnnonceId();
         id.setIdAnnonce(idAnnonce);
         id.setIdCompetence(idCompetence);

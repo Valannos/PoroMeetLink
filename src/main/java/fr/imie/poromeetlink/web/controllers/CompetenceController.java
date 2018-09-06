@@ -4,7 +4,6 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.CompetenceDto;
 import fr.imie.poromeetlink.service.services.CompetenceService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +24,7 @@ public class CompetenceController extends BaseController<CompetenceDto, Competen
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws InvalidFieldException, EntryNotFound, InvalidRoleException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws InvalidFieldException, EntryNotFound, InvalidRoleException, WrongOwnerException {
         return ResponseEntity.ok(service.delete(id));
     }
 

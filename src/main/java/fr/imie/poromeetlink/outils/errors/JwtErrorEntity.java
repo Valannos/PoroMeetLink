@@ -5,7 +5,7 @@ import io.jsonwebtoken.Header;
 import org.springframework.http.HttpStatus;
 
 public class JwtErrorEntity extends AbstractError {
-    protected JwtErrorEntity(HttpStatus status, String message, Header header, Claims claims) {
+    protected JwtErrorEntity(HttpStatus status, String message, Header<?> header, Claims claims) {
         super(status, message);
         this.claims = claims;
         this.header = header;
@@ -13,7 +13,7 @@ public class JwtErrorEntity extends AbstractError {
 
     private Claims claims;
 
-    private Header header;
+    private Header<?> header;
 
     public Claims getClaims() {
         return claims;
@@ -23,11 +23,11 @@ public class JwtErrorEntity extends AbstractError {
         this.claims = claims;
     }
 
-    public Header getHeader() {
+    public Header<?> getHeader() {
         return header;
     }
 
-    public void setHeader(Header header) {
+    public void setHeader(Header<?> header) {
         this.header = header;
     }
 }

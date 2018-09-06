@@ -1,6 +1,5 @@
 package fr.imie.poromeetlink.service.mappers;
 
-import fr.imie.poromeetlink.domain.entities.Employe;
 import fr.imie.poromeetlink.domain.entities.Entreprise;
 import fr.imie.poromeetlink.service.dto.EntrepriseDto;
 import org.mapstruct.Mapper;

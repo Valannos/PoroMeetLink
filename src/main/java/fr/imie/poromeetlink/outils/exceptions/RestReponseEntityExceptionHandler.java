@@ -2,8 +2,6 @@ package fr.imie.poromeetlink.outils.exceptions;
 
 import fr.imie.poromeetlink.outils.errors.BasicErrorEntity;
 import fr.imie.poromeetlink.outils.errors.ErrorFieldsEntity;
-import fr.imie.poromeetlink.outils.errors.JwtErrorEntity;
-import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -4,7 +4,6 @@ package fr.imie.poromeetlink.web.controllers;
 import fr.imie.poromeetlink.outils.constantes.UrlConstants;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.BaseEntityDto;
-import fr.imie.poromeetlink.service.dto.ClassicDto;
 import fr.imie.poromeetlink.service.services.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +39,7 @@ public abstract class BaseController<T extends BaseEntityDto, U extends BaseServ
     @ResponseBody abstract ResponseEntity<T> get(Long id) throws EntryNotFound, WrongOwnerException;
 
     @RequestMapping(method = RequestMethod.DELETE, path = UrlConstants.ID_URL)
-    abstract ResponseEntity delete(Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException;
+    abstract ResponseEntity<Boolean> delete(Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException;
 
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody

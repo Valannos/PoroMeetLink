@@ -3,8 +3,6 @@ package fr.imie.poromeetlink.service.services;
 import fr.imie.poromeetlink.domain.entities.PropositionCandidatureId;
 import fr.imie.poromeetlink.service.dto.PropositionCandidatureDto;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 

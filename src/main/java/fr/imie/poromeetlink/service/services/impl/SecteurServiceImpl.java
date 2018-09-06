@@ -10,8 +10,6 @@ import fr.imie.poromeetlink.service.dto.SecteurDto;
 import fr.imie.poromeetlink.service.mappers.SecteurMapper;
 import fr.imie.poromeetlink.service.services.SecteurService;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +21,6 @@ import java.util.Optional;
 
 @Service
 public class SecteurServiceImpl extends AbstractService<SecteurRepository> implements SecteurService {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(SecteurService.class);
 
     @Autowired
     private SecteurMapper secteurMapper;
@@ -145,7 +141,7 @@ public class SecteurServiceImpl extends AbstractService<SecteurRepository> imple
     public void validator(SecteurDto dto) {
     this.invalidFields.clear();
     this.nonUniqueFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends SecteurDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

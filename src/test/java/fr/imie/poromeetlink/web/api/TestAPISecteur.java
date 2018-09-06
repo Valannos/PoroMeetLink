@@ -1,11 +1,7 @@
 package fr.imie.poromeetlink.web.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import fr.imie.poromeetlink.Application;
-import fr.imie.poromeetlink.outils.JwtTest;
-import fr.imie.poromeetlink.outils.constantes.RoleUtils;
-import fr.imie.poromeetlink.service.dto.SecteurDto;
-import org.junit.Assert;
+import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,10 +16,13 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-// entry point for all assertThat methods and utility methods (e.g. entry)
-import static org.assertj.core.api.Assertions.*;
 
-import java.util.List;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import fr.imie.poromeetlink.Application;
+import fr.imie.poromeetlink.outils.JwtTest;
+import fr.imie.poromeetlink.outils.constantes.RoleUtils;
+import fr.imie.poromeetlink.service.dto.SecteurDto;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = Application.class)

@@ -1,11 +1,9 @@
 package fr.imie.poromeetlink.domain.repositories;
 
 import fr.imie.poromeetlink.domain.entities.Candidat;
-import fr.imie.poromeetlink.domain.entities.Employe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Repository

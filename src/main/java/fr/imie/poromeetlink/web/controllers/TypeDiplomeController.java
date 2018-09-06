@@ -4,11 +4,8 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.TypeDiplomeDto;
 import fr.imie.poromeetlink.service.services.TypeDiplomeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.TYPE_DIPLOME)
@@ -25,7 +22,7 @@ public class TypeDiplomeController extends BaseController<TypeDiplomeDto, TypeDi
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         return ResponseEntity.ok(service.delete(id));
     }
 

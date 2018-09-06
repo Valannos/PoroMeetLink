@@ -4,14 +4,11 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.CandidatDto;
 import fr.imie.poromeetlink.service.services.CandidatService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 /**
  * {@link RestController} pour {@link fr.imie.poromeetlink.domain.entities.Candidat}
@@ -31,7 +28,7 @@ public class CandidatController extends BaseController<CandidatDto, CandidatServ
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         return ResponseEntity.ok().body(service.delete(id));
     }
 

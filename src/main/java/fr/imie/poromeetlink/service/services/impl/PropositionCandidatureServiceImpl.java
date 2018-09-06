@@ -117,7 +117,7 @@ public class PropositionCandidatureServiceImpl extends AbstractService<Propositi
     public void validator(PropositionCandidatureDto dto) throws NoSuchFieldException {
         this.invalidFields.clear();
         this.nonUniqueFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends PropositionCandidatureDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

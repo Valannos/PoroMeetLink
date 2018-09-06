@@ -1,6 +1,5 @@
 package fr.imie.poromeetlink.domain.repositories;
 
-import fr.imie.poromeetlink.domain.entities.Annonce;
 import fr.imie.poromeetlink.domain.entities.PropositionCandidature;
 import fr.imie.poromeetlink.domain.entities.PropositionCandidatureId;
 import org.springframework.data.jpa.repository.JpaRepository;

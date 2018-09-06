@@ -7,8 +7,6 @@ import fr.imie.poromeetlink.service.Security.JwtAuthenticationFailureHandler;
 import fr.imie.poromeetlink.service.Security.JwtAuthenticationSuccessHandler;
 import fr.imie.poromeetlink.service.services.MessageProvider;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.security.authentication.*;
 import org.springframework.security.core.Authentication;
@@ -29,8 +27,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final JwtAuthenticationSuccessHandler successHandler;
 
     private final JwtAuthenticationFailureHandler failureHandler;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(JWTAuthenticationFilter.class);
 
     private AuthenticationManager authenticationManager;
 

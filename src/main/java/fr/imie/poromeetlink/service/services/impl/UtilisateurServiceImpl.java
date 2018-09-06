@@ -227,7 +227,7 @@ public class UtilisateurServiceImpl extends AbstractService<UtilisateurRepositor
     public void validator(UtilisateurDto dto) {
         invalidFields.clear();
         invalidDateFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends UtilisateurDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

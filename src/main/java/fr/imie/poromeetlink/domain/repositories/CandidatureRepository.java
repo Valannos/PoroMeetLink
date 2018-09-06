@@ -5,8 +5,6 @@ import fr.imie.poromeetlink.domain.entities.PropositionCandidatureId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 /**
  * {@link Repository} pour {@link Candidature}
  */

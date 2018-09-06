@@ -124,7 +124,7 @@ public class EntrepriseServiceImpl extends AbstractService<EntrepriseRepository>
     @Override
     public void validator(EntrepriseDto dto) {
         LOGGER.info("Entreprise à enregister: " + dto.toString());
-        Class clazz = dto.getClass();
+        Class<? extends EntrepriseDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

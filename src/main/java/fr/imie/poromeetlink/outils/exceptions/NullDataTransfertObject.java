@@ -6,9 +6,9 @@ package fr.imie.poromeetlink.outils.exceptions;
 public class NullDataTransfertObject extends NullPointerException {
     private static final long serialVersionUID = -8946442883242693068L;
 
-    private Class aClass;
+    private Class<?> aClass;
 
-    public NullDataTransfertObject(String s, Class tClass) {
+    public NullDataTransfertObject(String s, Class<?> tClass) {
         super(s);
         this.aClass = tClass;
     }
@@ -17,7 +17,7 @@ public class NullDataTransfertObject extends NullPointerException {
         super(s);
     }
 
-    public Class getaClass() {
+    public Class<?> getaClass() {
         return aClass;
     }
 }

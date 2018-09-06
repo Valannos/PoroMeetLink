@@ -133,7 +133,7 @@ public class EmployeServiceImpl extends AbstractService<EmployeRepository> imple
     @Override
     public void validator(EmployeDto dto) {
 
-        Class clazz = dto.getClass();
+        Class<? extends EmployeDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

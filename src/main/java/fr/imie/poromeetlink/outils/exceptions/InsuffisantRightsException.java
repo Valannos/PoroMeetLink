@@ -6,6 +6,10 @@ package fr.imie.poromeetlink.outils.exceptions;
 public class InsuffisantRightsException extends Exception {
 
     /**
+	 * serial
+	 */
+	private static final long serialVersionUID = 5417087310203564893L;
+	/**
      * Le nom du droit minimum pour effectuer l'action.
      */
     private String roleName;

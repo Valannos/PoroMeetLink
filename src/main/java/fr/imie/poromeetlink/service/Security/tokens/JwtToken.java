@@ -7,7 +7,12 @@ import java.io.Serializable;
  */
 public class JwtToken implements Serializable {
 
-    private String token;
+    /**
+	 * serial
+	 */
+	private static final long serialVersionUID = -4671164915948960526L;
+
+	private String token;
 
     private Long expirationDate;
 

@@ -87,7 +87,7 @@ public class TypeDiplomeServiceImpl extends AbstractService<TypeDiplomeRepositor
     public void validator(TypeDiplomeDto dto) throws NoSuchFieldException {
 
         this.invalidFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends TypeDiplomeDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

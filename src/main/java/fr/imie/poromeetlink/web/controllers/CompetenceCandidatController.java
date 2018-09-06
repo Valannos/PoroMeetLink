@@ -1,10 +1,8 @@
 package fr.imie.poromeetlink.web.controllers;
 
-import fr.imie.poromeetlink.domain.entities.CompetenceCandidat;
 import fr.imie.poromeetlink.domain.entities.CompetenceCandidatId;
 import fr.imie.poromeetlink.domain.entities.Utilisateur;
 import fr.imie.poromeetlink.outils.constantes.EntityUtils;
-import fr.imie.poromeetlink.outils.constantes.RoleUtils;
 import fr.imie.poromeetlink.outils.constantes.UrlConstants;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.CompetenceCandidatDto;
@@ -43,7 +41,7 @@ public class CompetenceCandidatController {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = UrlConstants.ID_CANDIDAT_ID_COMPETENCE)
-    public @ResponseBody ResponseEntity delete(@PathVariable Long idCandidat, @PathVariable Long idCompetence) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
+    public @ResponseBody ResponseEntity<Boolean> delete(@PathVariable Long idCandidat, @PathVariable Long idCompetence) throws EntryNotFound, InvalidRoleException, InvalidFieldException, WrongOwnerException {
         Utilisateur utilisateur = utilisateurService.getAuthenticatedUtilisateur();
         CompetenceCandidatId id = new CompetenceCandidatId(idCompetence, idCandidat);
         return ResponseEntity.ok(service.delete(id));

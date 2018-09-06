@@ -122,7 +122,7 @@ public class CompetenceCandidatServiceImpl extends AbstractService<CompetenceCan
     @Override
     public void validator(CompetenceCandidatDto dto) throws NoSuchFieldException {
         this.invalidFields.clear();
-        Class clazz = dto.getClass();
+        Class<? extends CompetenceCandidatDto> clazz = dto.getClass();
         List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
         fields.forEach((Field field) -> {

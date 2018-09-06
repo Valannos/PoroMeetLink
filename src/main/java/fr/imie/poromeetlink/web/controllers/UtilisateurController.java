@@ -6,13 +6,8 @@ import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.Security.tokens.JwtToken;
 import fr.imie.poromeetlink.service.dto.UtilisateurDto;
 import fr.imie.poromeetlink.service.services.UtilisateurService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = UrlConstants.API_URL +  EntityUtils.UTILISATEUR)
@@ -32,7 +27,7 @@ public class UtilisateurController extends BaseController<UtilisateurDto, Utilis
     }
 
     @Override
-    public ResponseEntity delete(@PathVariable Long id) throws InvalidRoleException, EntryNotFound, InvalidFieldException {
+    public ResponseEntity<Boolean> delete(@PathVariable Long id) throws InvalidRoleException, EntryNotFound, InvalidFieldException {
         return ResponseEntity.ok(service.delete(id));
     }
 
