@@ -8,6 +8,8 @@
 
 - To allow Hibernate & Liquibase to access database you need to change login/password in *application.yml* and *liquibase.properties*
 
+- A Tomcat 8.5 server is needed to deploy project however an embbeded Tomcat can also be employed changing configuration in POM.xml and Application.java 
+
 - Compile project without frontend for developpement (faster)
 
 ```
@@ -20,7 +22,7 @@ mvn clean package -Dskip.npm
 mvn clean package
 ```
 
-- serve angular on port 4200 (SpringBoot project need to be started either from IDE or .jar)
+- serve angular on port 4200 (SpringBoot project need to be started)
 
 ```
 cd pml

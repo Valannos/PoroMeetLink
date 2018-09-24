@@ -7,11 +7,12 @@ import { TokenStorage } from './token.storage';
 import { RoleEnum } from '../models/role';
 import { UtilisateurService } from './utilisateur.service';
 import { JwtToken } from '../models/JwtToken';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class AuthenticationService {
-  public loginUrl = 'http://localhost:8080/api/login';
-  public refreshUrl = 'http://localhost:8080/api/utilisateur/refresh';
+  public loginUrl = UrlUtils.getBaseURL() + '/api/login';
+  public refreshUrl = UrlUtils.getBaseURL() + '/api/utilisateur/refresh';
   utilisateur: Utilisateur;
   isAdminSite: Boolean = false;
   isCandidat: Boolean = false;

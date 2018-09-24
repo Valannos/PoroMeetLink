@@ -3,11 +3,12 @@ import { AbstractService } from './abstract.service';
 import { Diplome } from '../models/diplome';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class DiplomeService extends AbstractService<Diplome> {
   constructor(protected http: HttpClient) {
-    super(http, 'http://localhost:8080/api/diplome/');
+    super(http, UrlUtils.getBaseURL() + '/api/diplome/');
   }
 
   public getAllByCandidat(id: number): Observable<Diplome[]> {

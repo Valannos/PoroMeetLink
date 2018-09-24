@@ -4,13 +4,13 @@ import { Competence } from '../models/competence';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CompetenceCandidat } from '../models/competence.candidat';
-import { DataProvider } from './data.provider';
 import { CompetenceCandidatId } from '../models/competence.candidat.id';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class CompetenceCandidatService implements BaseService<CompetenceCandidat, CompetenceCandidatId> {
 
-  private url = 'http://localhost:8080/api/competence_candidat/';
+  private url = UrlUtils.getBaseURL() + '/api/competence_candidat/';
   private headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });

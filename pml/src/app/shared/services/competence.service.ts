@@ -3,11 +3,12 @@ import { BaseService } from './interface.service';
 import { Competence } from '../models/competence';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class CompetenceService implements BaseService<Competence, Number> {
 
-  private url = 'http://localhost:8080/api/competence/';
+  private url = UrlUtils.getBaseURL() + '/api/competence/';
   private headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });

@@ -3,12 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BaseService } from './interface.service';
 import { CompetenceAnnonce, CompetenceAnnonceId } from '../models/competence.annonce';
 import { Observable } from 'rxjs';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class CompetenceAnnonceService implements BaseService<CompetenceAnnonce, CompetenceAnnonceId> {
     constructor(private httpClient: HttpClient) { }
 
-    private url = 'http://localhost:8080/api/competence_annonce/';
+    private url = UrlUtils.getBaseURL() + '/api/competence_annonce/';
     private headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });

@@ -42,6 +42,8 @@ spring:
 
 server:
   port: 8080
+  servlet:
+    context-path: /poromeetlink
 logging:
   file: poro_meet_link.log
   level:

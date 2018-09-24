@@ -4,10 +4,11 @@ import { Utilisateur } from '../models/utilisateur';
 import { Observable } from 'rxjs';
 import { BaseService } from './interface.service';
 import { RoleEnum } from '../models/role';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class UtilisateurService implements BaseService<Utilisateur, number> {
-  private utilisateurUrl = 'http://127.0.0.1:8080/api/utilisateur';
+  private utilisateurUrl = UrlUtils.getBaseURL() + '/api/utilisateur';
   private currentUserUrl = this.utilisateurUrl + '/current';
   private suspendUrl = '/suspend/';
   private headers: HttpHeaders = new HttpHeaders({

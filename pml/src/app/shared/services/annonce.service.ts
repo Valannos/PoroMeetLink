@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { AbstractService } from './abstract.service';
 import { HttpClient } from '@angular/common/http';
 import { Employe } from '../models/employe';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class AnnonceService extends AbstractService<Annonce> {
   constructor(protected http: HttpClient) {
-    super(http, 'http://localhost:8080/api/annonce/');
+    super(http, UrlUtils.getBaseURL() + '/api/annonce/');
   }
 
   getAllByEmploye(employe: Employe): Observable<Annonce[]> {

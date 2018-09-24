@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { DataProvider } from './data.provider';
 import { AuthenticationService } from './authentication.service';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class EmployeService
   implements BaseService<Employe, number>, DataProvider<Employe> {
   private employe: Employe;
 
-  private url = 'http://localhost:8080/api/employe/';
+  private url = UrlUtils.getBaseURL() + '/api/employe/';
   private headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });

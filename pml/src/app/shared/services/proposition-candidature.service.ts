@@ -3,6 +3,7 @@ import { BaseService } from './interface.service';
 import { PropositionCandidature, PropositionCandidatureId } from '../models/proposition.candidature';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UrlUtils } from './url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PropositionCandidatureService implements BaseService<PropositionCan
 
   constructor(private httpClient: HttpClient) { }
 
-    private url = 'http://localhost:8080/api/proposition_candidature/';
+    private url = UrlUtils.getBaseURL() + '/api/proposition_candidature/';
     private headers: HttpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });

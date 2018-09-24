@@ -5,13 +5,14 @@ import { Observable } from 'rxjs';
 import { Candidat } from '../models/candidat';
 import { DataProvider } from './data.provider';
 import { AbstractService } from './abstract.service';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class CandidatService extends AbstractService<Candidat>
   implements DataProvider<Candidat> {
   private candidat: Candidat;
-  constructor(protected http: HttpClient, private auth: AuthenticationService) {
-    super(http, 'http://localhost:8080/api/candidat/');
+  constructor(protected http: HttpClient, private auth: AuthenticationService, ) {
+    super(http, UrlUtils.getBaseURL() + '/api/candidat/');
   }
   /*
   post(entity: Candidat): Observable<Candidat> {

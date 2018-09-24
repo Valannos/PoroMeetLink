@@ -6,6 +6,7 @@ import { AuthenticationService } from './authentication.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DataProvider } from './data.provider';
 import { EmployeService } from './employe.service';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class EntrepriseService
@@ -17,7 +18,7 @@ export class EntrepriseService
     private employeService: EmployeService
   ) {}
 
-  private url = 'http://localhost:8080/api/entreprise/';
+  private url = UrlUtils.getBaseURL() + '/api/entreprise/';
   private headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });

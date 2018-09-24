@@ -4,11 +4,12 @@ import { Observable } from 'rxjs';
 import { Secteur } from '../models/secteur';
 import {AuthenticationService } from './authentication.service';
 import { BaseService } from './interface.service';
+import { UrlUtils } from './url.service';
 
 @Injectable()
 export class SecteurService implements BaseService<Secteur, number> {
 
-  private secteurUrl = 'http://127.0.0.1:8080/api/secteur/';
+  private secteurUrl = UrlUtils.getBaseURL() + '/api/secteur/';
   private headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
 

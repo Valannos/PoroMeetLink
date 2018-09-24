@@ -1,11 +1,11 @@
 {
   "name": "pml",
-  "version": "0.7.3",
+  "version": "0.7.5",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --base-href /poromeetlink/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

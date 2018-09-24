@@ -31,7 +31,6 @@ import { CandidatService } from './shared/services/candidat.service';
 import { SecteurComboboxComponent } from './component-model/secteur/secteur-combobox/secteur-combobox.component';
 import { UtilisateurService } from './shared/services/utilisateur.service';
 import { CandidatComponent } from './component-model/candidat/candidat.component';
-import { BoutonGeneriqueComponent } from './shared/bouton-generique/bouton-generique.component';
 import { UtilisateurListComponent } from './component-model/utilisateur/utilisateur-list/utilisateur-list.component';
 import { RolePipe } from './shared/pipes/role.pipe';
 import { CandidatDetailsComponent } from './component-model/candidat/candidat-details/candidat-details.component';
@@ -74,11 +73,13 @@ import { ComptenceAnnonceModalComponent } from './component-model/competence/com
 import { PropositionCandidatureService } from './shared/services/proposition-candidature.service';
 import { PropositionModalComponent } from './component-model/proposition/proposition-modal/proposition-modal.component';
 import { HashLocationStrategy, LocationStrategy } from '../../node_modules/@angular/common';
+import { BoutonGeneriqueComponent } from './shared/bouton-generique/bouton-generique.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PoroNavComponent,
+    BoutonGeneriqueComponent,
     PageNotFoundComponentComponent,
     ConnexionComponent,
     AvatarSelectionComponent,
@@ -90,7 +91,6 @@ import { HashLocationStrategy, LocationStrategy } from '../../node_modules/@angu
     SecteurComboboxComponent,
     CandidatComponent,
     AvatarSelectionComponent,
-    BoutonGeneriqueComponent,
     UtilisateurListComponent,
     RolePipe,
     CandidatDetailsComponent,
