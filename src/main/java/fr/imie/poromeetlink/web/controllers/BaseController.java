@@ -1,15 +1,29 @@
 package fr.imie.poromeetlink.web.controllers;
 
 
-import fr.imie.poromeetlink.outils.constantes.UrlConstants;
-import fr.imie.poromeetlink.outils.exceptions.*;
-import fr.imie.poromeetlink.service.dto.BaseEntityDto;
-import fr.imie.poromeetlink.service.services.BaseService;
+import java.util.List;
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import fr.imie.poromeetlink.outils.constantes.UrlConstants;
+import fr.imie.poromeetlink.outils.exceptions.DuplicateEntryException;
+import fr.imie.poromeetlink.outils.exceptions.EntryNotFound;
+import fr.imie.poromeetlink.outils.exceptions.InsuffisantRightsException;
+import fr.imie.poromeetlink.outils.exceptions.InvalidFieldException;
+import fr.imie.poromeetlink.outils.exceptions.InvalidLoginException;
+import fr.imie.poromeetlink.outils.exceptions.InvalidRoleException;
+import fr.imie.poromeetlink.outils.exceptions.NullDataTransfertObject;
+import fr.imie.poromeetlink.outils.exceptions.WrongOwnerException;
+import fr.imie.poromeetlink.service.dto.BaseEntityDto;
+import fr.imie.poromeetlink.service.services.BaseService;
+import fr.imie.poromeetlink.service.services.MessageProvider;
 
 /**
  * Classe abstraite pour les controllers
@@ -21,15 +35,17 @@ public abstract class BaseController<T extends BaseEntityDto, U extends BaseServ
 
     @Autowired
     U service;
+    
+    @Autowired
+    protected MessageProvider messageProvider;
 
     /**
      * Récupération de toutes champs associés à l'entité T
      * @return Une {@link List} d'object {@link BaseEntityDto}
      */
     @RequestMapping(method = RequestMethod.GET)
-    @ResponseBody List<T> get() {
-        return service.getAll();
-    }
+    @ResponseBody 
+    abstract List<T> get();
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -44,5 +60,12 @@ public abstract class BaseController<T extends BaseEntityDto, U extends BaseServ
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     abstract ResponseEntity<T>  update(T item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException;
+    
+    protected void checkIfNull(T item) {
+        if (Objects.isNull(item)) {
+         Class<? extends BaseEntityDto> clazz = item.getClass();
+       	 throw new NullDataTransfertObject(messageProvider.getMessage("NULL_DATA_TRANSFERT_OBJECT", clazz));
+       }
+    }
 
 }

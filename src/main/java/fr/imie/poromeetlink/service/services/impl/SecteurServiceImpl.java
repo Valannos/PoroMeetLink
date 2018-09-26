@@ -1,172 +1,135 @@
 package fr.imie.poromeetlink.service.services.impl;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import fr.imie.poromeetlink.domain.entities.Secteur;
 import fr.imie.poromeetlink.domain.repositories.SecteurRepository;
 import fr.imie.poromeetlink.outils.constantes.FieldUtils;
 import fr.imie.poromeetlink.outils.exceptions.EntryNotFound;
 import fr.imie.poromeetlink.outils.exceptions.InvalidFieldException;
-import fr.imie.poromeetlink.outils.exceptions.NullDataTransfertObject;
 import fr.imie.poromeetlink.service.dto.SecteurDto;
 import fr.imie.poromeetlink.service.mappers.SecteurMapper;
 import fr.imie.poromeetlink.service.services.SecteurService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SecteurServiceImpl extends AbstractService<SecteurRepository> implements SecteurService {
 
-    @Autowired
-    private SecteurMapper secteurMapper;
+	@Autowired
+	private SecteurMapper secteurMapper;
 
-    private SecteurDto secteurDto = null;
+	private SecteurDto secteurDto = null;
 
+	@Override
+	public List<SecteurDto> getAll() {
 
-    @Override
-    public List<SecteurDto> getAll() {
+		List<SecteurDto> secteurDtos = new ArrayList<>();
+		repository.findAll().forEach(secteur ->
+		secteurDtos.add(secteurMapper.map(secteur, SecteurDto.class)));
+		return secteurDtos;
+	}
 
-        List<SecteurDto> secteurDtos = new ArrayList<>();
+	@Override
+	public SecteurDto getOne(Long id) throws EntryNotFound {
 
-        repository.findAll().forEach(secteur ->
+		if (Objects.isNull(id)) {
+			throw new IllegalArgumentException(messageProvider.getMessage("NULL_ID", Secteur.class));
+		}
+		Optional<Secteur> secteur = repository.findById(id);
 
-                secteurDtos.add(secteurMapper.map(secteur, SecteurDto.class)));
+		if (secteur.isPresent()) {
+			return secteurMapper.map(secteur.get(), SecteurDto.class);
+		} else
+			throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
+	}
 
+	@Override
+	public SecteurDto saveOne(SecteurDto dto) throws InvalidFieldException {
 
-        return secteurDtos;
-    }
+		validator(dto);
+		if (!nonUniqueFields.isEmpty()) {
 
-    @Override
-    public SecteurDto getOne(Long id) throws EntryNotFound {
+			throw new InvalidFieldException(messageProvider.getMessage("ALREADY_EXISTS_FIELD", Secteur.class),
+					nonUniqueFields);
+		}
+		Secteur secteur = secteurMapper.map(dto, Secteur.class);
+		secteurDto = secteurMapper.map(repository.save(secteur), SecteurDto.class);
+		return secteurDto;
+	}
 
-        if (id == null) {
-            throw new IllegalArgumentException(messageProvider.getMessage("NULL_ID", Secteur.class));
-        }
+	@Override
+	public SecteurDto updateOne(SecteurDto dto) throws InvalidFieldException, EntryNotFound {
+		if (repository.existsById(dto.getId())) {
 
-        Optional<Secteur> secteur = repository.findById(id);
+			Optional<Secteur> optionalSecteur = repository.findByLibelle(dto.getLibelle());
+			if (optionalSecteur.isPresent()) {
+				this.nonUniqueFields.add(FieldUtils.LIBELLE);
+			}
 
-        if (secteur.isPresent()) {
+			if (!nonUniqueFields.isEmpty()) {
+				throw new InvalidFieldException(messageProvider.getMessage("ALREADY_EXISTS_FIELD", Secteur.class),
+						nonUniqueFields);
+			}
 
-            return secteurMapper.map(secteur.get(), SecteurDto.class);
-        } else
+		} else {
+			throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
+		}
+		Secteur competence = repository.save(secteurMapper.map(dto, Secteur.class));
+		dto = secteurMapper.map(competence, SecteurDto.class);
 
-            throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
+		return dto;
+	}
 
-    }
+	@Override
+	public Boolean delete(Long id) throws EntryNotFound {
+		if (Objects.isNull(id)) {
+			throw new IllegalArgumentException(messageProvider.getMessage("NULL_ID", Secteur.class));
+		} else {
+			if (repository.existsById(id)) {
+				repository.deleteById(id);
+			} else {
+				throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
+			}
+		}
+		return true;
+	}
 
-    @Override
-    public SecteurDto saveOne(SecteurDto dto) throws InvalidFieldException {
+	@Override
+	public Boolean exists(Long id) {
+		return repository.existsById(id);
+	}
 
-        if (dto != null) {
+	@Override
+	public void validator(SecteurDto dto) {
+		this.nonUniqueFields.clear();
+		Class<? extends SecteurDto> clazz = dto.getClass();
+		List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
 
-            validator(dto);
+		fields.forEach((Field field) -> {
 
-            if (!invalidFields.isEmpty()) {
+			String fieldName = field.getName();
 
-                throw new InvalidFieldException(messageProvider.getMessage("INVALID_FIELD", Secteur.class), invalidFields);
-            }
-            if (!nonUniqueFields.isEmpty()) {
+			switch (fieldName) {
 
-                throw new InvalidFieldException(messageProvider.getMessage("ALREADY_EXISTS_FIELD", Secteur.class), nonUniqueFields);
-            }
+			case FieldUtils.LIBELLE:
+				Optional<Secteur> optionalSecteur = repository.findByLibelle(dto.getLibelle());
+				if (optionalSecteur.isPresent()) {
+					this.nonUniqueFields.add(fieldName);
+				}
+				break;
+			}
+		});
+	}
 
-            Secteur secteur = secteurMapper.map(dto, Secteur.class);
-            secteurDto = secteurMapper.map(repository.save(secteur), SecteurDto.class);
-
-        } else {
-
-            throw new NullDataTransfertObject(messageProvider.getMessage("NULL_DATA_TRANSFERT_OBJECT", Secteur.class));
-        }
-        return secteurDto;
-    }
-
-    @Override
-    public SecteurDto updateOne(SecteurDto dto) throws InvalidFieldException, EntryNotFound {
-        if (dto != null) {
-
-            if (repository.existsById(dto.getId())) {
-
-                validator(dto);
-
-                if (!invalidFields.isEmpty()) {
-
-                    throw new InvalidFieldException(messageProvider.getMessage("INVALID_FIELD", Secteur.class), invalidFields);
-                }
-                if (!nonUniqueFields.isEmpty()) {
-
-                    throw new InvalidFieldException(messageProvider.getMessage("ALREADY_EXISTS_FIELD", Secteur.class), nonUniqueFields);
-
-                }
-
-            } else {
-                throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
-            }
-
-        } else {
-
-            throw new NullDataTransfertObject(messageProvider.getMessage("NULL_DATA_TRANSFERT_OBJECT", Secteur.class));
-        }
-        Secteur competence = repository.save(secteurMapper.map(dto, Secteur.class));
-        dto = secteurMapper.map(competence, SecteurDto.class);
-
-        return dto;
-    }
-
-    @Override
-    public Boolean delete(Long id) throws EntryNotFound {
-        if (id == null) {
-            throw new IllegalArgumentException(messageProvider.getMessage("NULL_ID", Secteur.class));
-        } else {
-            if (repository.existsById(id)) {
-                repository.deleteById(id);
-
-            } else {
-                throw new EntryNotFound(messageProvider.getMessage("ENTRY_NOT_FOUND", Secteur.class));
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public Boolean exists(Long id) {
-        return repository.existsById(id);
-    }
-
-    @Override
-    public void validator(SecteurDto dto) {
-    this.invalidFields.clear();
-    this.nonUniqueFields.clear();
-        Class<? extends SecteurDto> clazz = dto.getClass();
-        List<Field> fields = Arrays.asList(clazz.getDeclaredFields());
-
-        fields.forEach((Field field) -> {
-
-            String fieldName = field.getName();
-
-            switch (fieldName) {
-
-                case FieldUtils.LIBELLE:
-
-                    if (dto.getLibelle() == null || dto.getLibelle().equals(StringUtils.EMPTY)) {
-                        this.invalidFields.add(fieldName);
-                    }
-                    Optional<Secteur> optionalSecteur = repository.findByLibelle(dto.getLibelle());
-                    if (optionalSecteur.isPresent()) {
-                        this.nonUniqueFields.add(fieldName);
-                    }
-                    break;
-            }
-        });
-    }
-
-    @Override
-    public SecteurDto getByLibelle(String libelle) {
-
-        return secteurMapper.map(repository.findByLibelle(libelle).get(), SecteurDto.class);
-    }
+	@Override
+	public SecteurDto getByLibelle(String libelle) {
+		return secteurMapper.map(repository.findByLibelle(libelle).get(), SecteurDto.class);
+	}
 }

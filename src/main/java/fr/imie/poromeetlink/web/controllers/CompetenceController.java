@@ -9,13 +9,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "/api/" + EntityUtils.COMPETENCE)
 public class CompetenceController extends BaseController<CompetenceDto, CompetenceService> {
 
     @Override
-    public ResponseEntity<CompetenceDto> save(@RequestBody CompetenceDto item) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {
-        return ResponseEntity.ok(service.saveOne(item));
+    public ResponseEntity<CompetenceDto> save(@Valid @RequestBody CompetenceDto competence) throws InvalidRoleException, InvalidFieldException, NoSuchFieldException, InsuffisantRightsException, WrongOwnerException, DuplicateEntryException, EntryNotFound {
+        return ResponseEntity.ok(service.saveOne(competence));
     }
 
     @Override
@@ -29,8 +31,8 @@ public class CompetenceController extends BaseController<CompetenceDto, Competen
     }
 
     @Override
-    public ResponseEntity<CompetenceDto> update(@RequestBody CompetenceDto item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
-        return ResponseEntity.ok(service.updateOne(item));
+    public ResponseEntity<CompetenceDto> update(@Valid @RequestBody CompetenceDto competence) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
+        return ResponseEntity.ok(service.updateOne(competence));
     }
 
     @RequestMapping(path = "/bySecteur/{id}", method = RequestMethod.GET)
@@ -38,4 +40,9 @@ public class CompetenceController extends BaseController<CompetenceDto, Competen
     List<CompetenceDto> getAllBySecteur(@PathVariable Long id) throws EntryNotFound {
         return this.service.getAllByService(id);
     }
+
+	@Override
+	List<CompetenceDto> get() {
+		return service.getAll();
+	}
 }

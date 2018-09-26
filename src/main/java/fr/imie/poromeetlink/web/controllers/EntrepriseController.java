@@ -4,6 +4,9 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.EntrepriseDto;
 import fr.imie.poromeetlink.service.services.EntrepriseService;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,4 +46,9 @@ public class EntrepriseController extends BaseController<EntrepriseDto, Entrepri
     public ResponseEntity<EntrepriseDto> getByUtilisateur() throws EntryNotFound {
         return ResponseEntity.ok(this.service.getEntrepriseByUtilisateur());
     }
+
+	@Override
+	List<EntrepriseDto> get() {
+		return service.getAll();
+	}
 }

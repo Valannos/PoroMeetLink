@@ -38,4 +38,9 @@ public class EmployeController extends BaseController<EmployeDto, EmployeService
     public @ResponseBody ResponseEntity<List<EmployeDto>> getEmployesEntreprise(@PathVariable Long id) throws EntryNotFound, WrongOwnerException {
         return ResponseEntity.ok(service.getAllEmployesByEntreprise(id));
     }
+
+	@Override
+	List<EmployeDto> get() {
+		return service.getAll();
+	}
 }

@@ -6,6 +6,9 @@ import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.Security.tokens.JwtToken;
 import fr.imie.poromeetlink.service.dto.UtilisateurDto;
 import fr.imie.poromeetlink.service.services.UtilisateurService;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -61,4 +64,9 @@ public class UtilisateurController extends BaseController<UtilisateurDto, Utilis
 
         return ResponseEntity.ok().body(service.suspendre(id));
     }
+
+	@Override
+	List<UtilisateurDto> get() {
+		return service.getAll();
+	}
 }

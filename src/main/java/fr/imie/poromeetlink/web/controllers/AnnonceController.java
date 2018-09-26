@@ -48,4 +48,9 @@ public class AnnonceController extends BaseController<AnnonceDto, AnnonceService
     public ResponseEntity<AnnonceDto> toggleValidity(@PathVariable Long id) throws EntryNotFound {
       return ResponseEntity.ok().body(this.service.toggleAnnonce(id));
     }
+
+	@Override
+	List<AnnonceDto> get() {
+		return service.getAll();
+	}
 }

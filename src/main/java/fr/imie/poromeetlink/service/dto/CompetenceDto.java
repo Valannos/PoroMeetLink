@@ -7,10 +7,10 @@ import javax.validation.constraints.NotNull;
  */
 public class CompetenceDto extends ClassicDto {
 
-    @NotNull
+    @NotNull(message = "NotNull.competence.intitule")
     private String intitule;
 
-    @NotNull
+    @NotNull(message = "NotNull.competence.secteur")
     private SecteurDto secteur;
 
     public String getIntitule() {

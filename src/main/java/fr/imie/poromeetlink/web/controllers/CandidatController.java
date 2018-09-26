@@ -4,6 +4,9 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.CandidatDto;
 import fr.imie.poromeetlink.service.services.CandidatService;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -36,5 +39,10 @@ public class CandidatController extends BaseController<CandidatDto, CandidatServ
     public ResponseEntity<CandidatDto> update(@RequestBody CandidatDto item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
         return ResponseEntity.ok(service.updateOne(item));
     }
+
+	@Override
+	List<CandidatDto> get() {
+		return service.getAll();
+	}
 
 }

@@ -2,12 +2,14 @@ package fr.imie.poromeetlink.service.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 /**
  * Classe à intégrer dans les services pour que ces derniers génèrent un message
- * Attention : depuis les filtres, l'annotayion @{@link Autowired} ne fonctionne pas. Il faut utiliser {@link org.springframework.context.ApplicationContext}
+ * Attention : depuis les filtres, l'annotaion @{@link Autowired} ne fonctionne pas. Il faut utiliser {@link org.springframework.context.ApplicationContext}
  *
  */
 @Configuration
@@ -50,6 +52,11 @@ public class MessageProvider {
     public String getMessage(String code, Object[] objects) {
         return messageSource.getMessage(code, objects, LocaleContextHolder.getLocale());
     }
-
-
+    
+    @Bean
+    public LocalValidatorFactoryBean getValidator(MessageSource messageSource) {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(this.messageSource);
+        return bean;
+    }
 }

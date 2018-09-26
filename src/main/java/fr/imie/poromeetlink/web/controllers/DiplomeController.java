@@ -37,4 +37,9 @@ public class DiplomeController extends BaseController<DiplomeDto, DiplomeService
     public List<DiplomeDto> getAllByCandidat(@PathVariable Long id) {
         return this.service.getAllByCandidatId(id);
     }
+
+	@Override
+	List<DiplomeDto> get() {
+		return service.getAll();
+	}
 }

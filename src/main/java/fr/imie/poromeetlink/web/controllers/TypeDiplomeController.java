@@ -4,6 +4,9 @@ import fr.imie.poromeetlink.outils.constantes.EntityUtils;
 import fr.imie.poromeetlink.outils.exceptions.*;
 import fr.imie.poromeetlink.service.dto.TypeDiplomeDto;
 import fr.imie.poromeetlink.service.services.TypeDiplomeService;
+
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,4 +33,9 @@ public class TypeDiplomeController extends BaseController<TypeDiplomeDto, TypeDi
     public ResponseEntity<TypeDiplomeDto> update(@RequestBody TypeDiplomeDto item) throws NoSuchFieldException, EntryNotFound, InvalidFieldException, WrongOwnerException, InvalidRoleException, InsuffisantRightsException {
         return ResponseEntity.ok(service.updateOne(item));
     }
+
+	@Override
+	List<TypeDiplomeDto> get() {
+		return service.getAll();
+	}
 }
