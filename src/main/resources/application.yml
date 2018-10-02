@@ -1,4 +1,5 @@
 spring:
+  
   application:
     name: Poro-MeetLink
 
@@ -41,14 +42,13 @@ spring:
     drop-first: false
 
 server:
-  port: 8080
+  port: 8443
   servlet:
     context-path: /poromeetlink
 logging:
   file: poro_meet_link.log
   level:
     root: info
-
 
 
 

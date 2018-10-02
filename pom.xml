@@ -7,8 +7,8 @@
 	<groupId>fr.imie.poromeetlink</groupId>
 	<artifactId>poro-meet-link</artifactId>
 	<version>0.7.5</version>
-	<packaging>war</packaging>
-
+	<!-- <packaging>war</packaging> -->
+	<packaging>jar</packaging>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
@@ -130,12 +130,8 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
-		</dependency>
-
+		<!-- <dependency> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-tomcat</artifactId> 
+			<scope>provided</scope> </dependency> -->
 	</dependencies>
 	<build>
 		<finalName>poromeetlink</finalName>
