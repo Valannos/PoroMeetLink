@@ -42,7 +42,7 @@ spring:
     drop-first: false
 
 server:
-  port: 8443
+  port: 8080
   servlet:
     context-path: /poromeetlink
 logging:

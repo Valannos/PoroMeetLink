@@ -25,23 +25,34 @@ import java.util.Arrays;
 public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
-    @Autowired
+    private final
     UtilisateurAuthService authService;
 
-    @Autowired
+    private final
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
+    private final
     JwtAuthenticationSuccessHandler successHandler;
 
-    @Autowired
+    private final
     JwtAuthenticationFailureHandler failureHandler;
 
-    @Autowired
+    private final
     RestEntryPoint RestEntryPoint;
 
-    @Autowired
+    private final
     RestAccessDeniedHandler restAccessDeniedHandler;
+
+    @Autowired
+    public RestSecurityConfiguration(UtilisateurAuthService authService, BCryptPasswordEncoder bCryptPasswordEncoder, JwtAuthenticationSuccessHandler successHandler, JwtAuthenticationFailureHandler failureHandler, RestEntryPoint RestEntryPoint, RestAccessDeniedHandler restAccessDeniedHandler) {
+        this.authService = authService;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.successHandler = successHandler;
+        this.failureHandler = failureHandler;
+        this.RestEntryPoint = RestEntryPoint;
+        this.restAccessDeniedHandler = restAccessDeniedHandler;
+    }
+
 
     /**
      * Configuration CORS - Permets d'effecuter des requêtes HTTP depuis le serveur de développement Angular

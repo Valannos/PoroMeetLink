@@ -30,13 +30,19 @@ public class JwtAuthenticationSuccessHandler implements AuthenticationSuccessHan
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationSuccessHandler.class);
 
-    @Autowired
+    private final
     MessageProvider messageProvider;
 
-    @Autowired
+    private final
     ObjectMapper mapper;
 
     private ZonedDateTime currentTime;
+
+    @Autowired
+    public JwtAuthenticationSuccessHandler(MessageProvider messageProvider, ObjectMapper mapper) {
+        this.messageProvider = messageProvider;
+        this.mapper = mapper;
+    }
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {

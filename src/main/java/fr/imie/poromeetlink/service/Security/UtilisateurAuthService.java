@@ -16,8 +16,12 @@ import java.util.Set;
 @Service
 public class UtilisateurAuthService implements UserDetailsService {
 
+    private final UtilisateurService service;
+
     @Autowired
-    private UtilisateurService service;
+    public UtilisateurAuthService(UtilisateurService service) {
+        this.service = service;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
